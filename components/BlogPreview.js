@@ -7,15 +7,17 @@ export default function BlogPreview() {
   return (
     <section className="bg-mist py-20 text-evergreen">
       <div className="mx-auto max-w-6xl px-5">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <SectionHeading
-            tone="light"
-            kicker="Blog"
-            title="Notes on school and side projects"
-          />
+        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div className="min-w-0 flex-1 [&>div]:mb-0">
+            <SectionHeading
+              tone="light"
+              kicker="Blog"
+              title="Notes on school and side projects"
+            />
+          </div>
           <Link
             href="/blog"
-            className="hold-hover mb-10 rounded-full bg-evergreen px-5 py-2.5 text-sm font-semibold text-sky"
+            className="hold-hover mb-8 shrink-0 self-start rounded-full bg-evergreen px-5 py-2.5 text-sm font-semibold text-sky md:self-auto"
           >
             All posts →
           </Link>
@@ -30,7 +32,7 @@ export default function BlogPreview() {
               <p className="font-mono text-[11px] uppercase tracking-widest text-rose-deep">
                 {p.tag} · {p.date}
               </p>
-              <h3 className="font-display mt-3 text-xl leading-snug">
+              <h3 className="font-display mt-3 text-lg leading-snug">
                 {p.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-taupe">

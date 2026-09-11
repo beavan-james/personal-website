@@ -14,13 +14,13 @@ export default function Hero() {
             <span className="h-2 w-2 animate-pulse rounded-full bg-rose" />
             {site.location} · Open to internships
           </p>
-          <h1 className="font-display mt-6 text-5xl leading-[1.02] text-cream md:text-7xl">
+          <h1 className="font-display mt-6 text-4xl leading-tight text-cream text-balance md:text-5xl">
             Hi, I&apos;m {site.name.split(" ")[0]}.
             <br />
             <span className="text-sky">I build</span>{" "}
             <span className="italic text-rose">web apps.</span>
           </h1>
-          <p className="mt-6 max-w-xl text-lg leading-relaxed text-mist">
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-mist">
             {site.blurb} Placeholder hero — swap this with your year, focus
             areas, and what you&apos;re looking for next.
           </p>
@@ -54,7 +54,7 @@ export default function Hero() {
                 {site.location}
               </span>
             </div>
-            <p className="font-display mt-4 text-3xl text-cream">{site.name}</p>
+            <p className="font-display mt-4 text-2xl leading-tight text-cream">{site.name}</p>
             <p className="mt-1 text-sm text-mist">{site.role}</p>
             <div className="mt-5 grid grid-cols-2 gap-3 text-sm">
               {[

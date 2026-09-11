@@ -31,10 +31,10 @@ export default function Projects() {
                   {p.status}
                 </span>
               </div>
-              <h3 className="font-display mt-4 text-2xl leading-tight">
+              <h3 className="font-display mt-4 text-xl leading-snug">
                 {p.title}
               </h3>
-              <p className="mt-2 flex-1 text-[15px] leading-relaxed text-taupe">
+              <p className="mt-2 flex-1 text-sm leading-relaxed text-taupe">
                 {p.description}
               </p>
               <div className="mt-4 flex flex-wrap gap-2">

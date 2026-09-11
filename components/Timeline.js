@@ -19,7 +19,7 @@ export default function Timeline() {
               <p className="font-mono text-xs uppercase tracking-widest text-sky">
                 {e.period} · {e.place}
               </p>
-              <h3 className="font-display mt-2 text-2xl text-cream md:text-3xl">
+              <h3 className="font-display mt-2 text-xl leading-snug text-cream md:text-2xl">
                 {e.title}
               </h3>
               <p className="mt-2 max-w-2xl leading-relaxed text-mist">

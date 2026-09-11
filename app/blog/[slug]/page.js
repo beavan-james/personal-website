@@ -34,13 +34,13 @@ export default async function BlogPost({ params }) {
         <p className="font-mono text-xs uppercase tracking-widest text-rose-deep">
           {post.tag} · {post.date}
         </p>
-        <h1 className="font-display mt-3 text-4xl leading-tight md:text-5xl">
+        <h1 className="font-display mt-3 text-3xl leading-tight text-balance md:text-4xl">
           {post.title}
         </h1>
         <p className="mt-4 border-l-4 border-rose bg-sky/40 p-4 italic text-taupe">
           {post.excerpt}
         </p>
-        <div className="mt-8 space-y-5 text-[17px] leading-relaxed">
+        <div className="mt-8 space-y-5 text-base leading-relaxed">
           {post.body.map((para, i) => (
             <p key={i}>{para}</p>
           ))}

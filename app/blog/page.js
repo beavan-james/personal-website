@@ -14,10 +14,10 @@ export default function BlogIndex() {
         <p className="font-mono text-xs uppercase tracking-[0.25em] text-rose">
           ⌁ Blog
         </p>
-        <h1 className="font-display mt-3 text-5xl text-cream">
+        <h1 className="font-display mt-3 text-3xl leading-tight text-cream text-balance md:text-4xl">
           Notes worth keeping
         </h1>
-        <p className="mt-3 text-lg text-mist">
+        <p className="mt-3 text-base text-mist">
           Placeholder blog — replace with MDX later. Posts are static data in{" "}
           <code className="rounded bg-mist/15 px-1.5 py-0.5 font-mono text-sm text-sky">
             lib/posts.js
@@ -34,7 +34,7 @@ export default function BlogIndex() {
               <p className="font-mono text-[11px] uppercase tracking-widest text-rose">
                 {p.tag} · {p.date}
               </p>
-              <h2 className="font-display mt-2 text-2xl text-cream">
+              <h2 className="font-display mt-2 text-xl leading-snug text-cream">
                 {p.title}
               </h2>
               <p className="mt-2 text-mist">{p.excerpt}</p>

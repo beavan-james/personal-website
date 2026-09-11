@@ -43,7 +43,7 @@ export default function About() {
                 <p className="font-mono text-[11px] uppercase tracking-widest text-taupe">
                   {s.label}
                 </p>
-                <p className="font-display mt-2 text-2xl">{s.value}</p>
+                <p className="font-display mt-2 text-lg leading-snug break-words">{s.value}</p>
               </div>
             ))}
           </div>

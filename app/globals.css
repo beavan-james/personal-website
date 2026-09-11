@@ -30,6 +30,9 @@ body {
 .font-display {
   font-family: var(--font-display);
   letter-spacing: 0.01em;
+  line-height: 1.08;
+  overflow-wrap: break-word;
+  text-wrap: balance;
 }
 
 /* Topo-map contour background (pure CSS/SVG tiling) */
