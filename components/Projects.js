@@ -3,13 +3,13 @@ import { projects } from "../lib/site";
 
 export default function Projects() {
   return (
-    <section id="routes" className="topo-bg-light bg-sky py-20 text-evergreen">
+    <section id="projects" className="topo-bg-light bg-sky py-20 text-evergreen">
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
           tone="light"
-          kicker="Pitch 2 · Routes"
-          title="Projects, graded like climbs"
-          blurb="V0 warm-ups to V6 projects. Placeholder cards — swap in your GitHub repos, demos, and write-ups."
+          kicker="Projects"
+          title="Selected work"
+          blurb="Placeholder cards — swap in your GitHub repos, demos, and write-ups."
         />
         <div className="grid gap-5 md:grid-cols-3">
           {projects.map((p) => (
@@ -19,16 +19,16 @@ export default function Projects() {
             >
               <div className="flex items-center justify-between gap-2">
                 <span className="rounded-full bg-evergreen px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-sky">
-                  {p.grade}
+                  {p.category}
                 </span>
                 <span
                   className={`rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-widest ${
-                    p.status === "Sent"
+                    p.status === "Completed"
                       ? "bg-mist text-evergreen"
                       : "bg-rose text-evergreen"
                   }`}
                 >
-                  {p.status === "Sent" ? "● Sent" : "◐ Projecting"}
+                  {p.status}
                 </span>
               </div>
               <h3 className="font-display mt-4 text-2xl leading-tight">

@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="border-t border-mist/15 bg-evergreen-deep">
       <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-5 py-8 md:flex-row md:items-center">
         <p className="font-mono text-xs uppercase tracking-widest text-mist">
-          © {new Date().getFullYear()} {site.name} · climb on
+          © {new Date().getFullYear()} {site.name}
         </p>
         <div className="flex gap-4">
           {site.socials.map((s) => (

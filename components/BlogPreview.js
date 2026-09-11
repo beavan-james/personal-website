@@ -10,14 +10,14 @@ export default function BlogPreview() {
         <div className="flex flex-wrap items-end justify-between gap-4">
           <SectionHeading
             tone="light"
-            kicker="Field Notes"
-            title="Beta from school, code & crag"
+            kicker="Blog"
+            title="Notes on school and side projects"
           />
           <Link
             href="/blog"
             className="hold-hover mb-10 rounded-full bg-evergreen px-5 py-2.5 text-sm font-semibold text-sky"
           >
-            All notes →
+            All posts →
           </Link>
         </div>
         <div className="grid gap-5 md:grid-cols-3">
@@ -37,7 +37,7 @@ export default function BlogPreview() {
                 {p.excerpt}
               </p>
               <p className="mt-4 font-mono text-xs uppercase tracking-widest text-evergreen">
-                Read beta →
+                Read post →
               </p>
             </Link>
           ))}

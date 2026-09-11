@@ -2,8 +2,8 @@ import Link from "next/link";
 import { getAllPosts } from "../../lib/posts";
 
 export const metadata = {
-  title: "Field Notes — Basecamp",
-  description: "Notes on school, code, and climbing.",
+  title: "Blog — Alex Carter",
+  description: "Notes on school, code, and side projects.",
 };
 
 export default function BlogIndex() {
@@ -12,10 +12,10 @@ export default function BlogIndex() {
     <main className="topo-bg bg-evergreen py-16">
       <div className="mx-auto max-w-4xl px-5">
         <p className="font-mono text-xs uppercase tracking-[0.25em] text-rose">
-          ⌁ Field Notes
+          ⌁ Blog
         </p>
         <h1 className="font-display mt-3 text-5xl text-cream">
-          Beta worth writing down
+          Notes worth keeping
         </h1>
         <p className="mt-3 text-lg text-mist">
           Placeholder blog — replace with MDX later. Posts are static data in{" "}
@@ -45,7 +45,7 @@ export default function BlogIndex() {
           href="/#top"
           className="mt-8 inline-block text-sm text-sky hover:text-rose"
         >
-          ← Back to basecamp
+          ← Back home
         </Link>
       </div>
     </main>

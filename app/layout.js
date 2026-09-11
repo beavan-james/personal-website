@@ -16,9 +16,9 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata = {
-  title: "Basecamp — Climbing-Inspired Portfolio",
+  title: "Alex Carter — CS Student Portfolio",
   description:
-    "Personal website of a student + climber. Projects as routes, experience as expeditions, field notes from school, code, and the crag.",
+    "Personal website of a computer science student. Projects, experience, and blog — with a subtle climbing-inspired theme.",
 };
 
 export default function RootLayout({ children }) {

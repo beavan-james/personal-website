@@ -9,7 +9,7 @@ export async function generateMetadata({ params }) {
   const { slug } = await params;
   const post = getPost(slug);
   return {
-    title: post ? `${post.title} — Field Notes` : "Post not found",
+    title: post ? `${post.title} — Blog` : "Post not found",
   };
 }
 
@@ -20,9 +20,9 @@ export default async function BlogPost({ params }) {
   if (!post) {
     return (
       <main className="mx-auto max-w-3xl px-5 py-20">
-        <h1 className="font-display text-4xl text-cream">Off route (404)</h1>
+        <h1 className="font-display text-4xl text-cream">Not found (404)</h1>
         <Link href="/blog" className="mt-4 inline-block text-sky">
-          ← Back to notes
+          ← Back to blog
         </Link>
       </main>
     );
@@ -47,10 +47,10 @@ export default async function BlogPost({ params }) {
         </div>
         <div className="mt-10 flex justify-between border-t border-taupe/20 pt-6">
           <Link href="/blog" className="text-sm text-taupe hover:text-rose-deep">
-            ← All notes
+            ← All posts
           </Link>
           <Link href="/#top" className="text-sm text-taupe hover:text-rose-deep">
-            Basecamp ↑
+            Home ↑
           </Link>
         </div>
       </article>

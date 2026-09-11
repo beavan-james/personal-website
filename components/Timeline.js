@@ -1,20 +1,19 @@
 import SectionHeading from "./SectionHeading";
-import { expeditions } from "../lib/site";
+import { experienceItems } from "../lib/site";
 
 export default function Timeline() {
   return (
-    <section id="expeditions" className="bg-evergreen py-20">
+    <section id="experience" className="bg-evergreen py-20">
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
-          kicker="Pitch 3 · Expeditions"
-          title="Multi-pitch career, one belay at a time"
-          blurb="School + work + climbing. Placeholder timeline — add real dates and outcomes."
+          kicker="Experience"
+          title="School and work so far"
+          blurb="Placeholder timeline — add real dates, roles, and outcomes."
         />
-        <div className="relative ml-2 border-l-2 border-dashed border-rose/50 pl-8 md:ml-6">
-          {expeditions.map((e, i) => (
+        <div className="relative ml-2 border-l-2 border-mist/25 pl-8 md:ml-6">
+          {experienceItems.map((e, i) => (
             <div key={e.title} className="reveal relative pb-10 last:pb-0">
-              {/* belay station */}
-              <span className="absolute -left-[45px] grid h-8 w-8 place-items-center rounded-full border-2 border-rose bg-evergreen-deep text-sm text-rose">
+              <span className="absolute -left-[45px] grid h-8 w-8 place-items-center rounded-full border-2 border-rose bg-evergreen-deep font-mono text-xs text-rose">
                 {i + 1}
               </span>
               <p className="font-mono text-xs uppercase tracking-widest text-sky">

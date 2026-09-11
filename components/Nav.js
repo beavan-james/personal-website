@@ -11,7 +11,6 @@ export default function Nav() {
     <header className="sticky top-1 z-50 border-b border-mist/20 bg-evergreen/90 backdrop-blur">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
         <Link href="/#top" className="flex items-center gap-3">
-          {/* carabiner-ish mark */}
           <span className="grid h-9 w-9 place-items-center rounded-full border-2 border-rose bg-evergreen-deep font-mono text-sm text-rose">
             ◈
           </span>
@@ -20,7 +19,7 @@ export default function Nav() {
               {site.name}
             </span>
             <span className="block font-mono text-[11px] uppercase tracking-widest text-mist">
-              basecamp · v1.0
+              {site.location}
             </span>
           </span>
         </Link>
@@ -34,9 +33,6 @@ export default function Nav() {
             >
               <span className="mr-1.5 inline-block h-2 w-2 rounded-full bg-rose align-middle opacity-80 group-hover:scale-125" />
               {l.label}
-              <span className="ml-1.5 font-mono text-[10px] text-mist/70">
-                {l.grade}
-              </span>
             </Link>
           ))}
         </div>
@@ -57,10 +53,9 @@ export default function Nav() {
               key={l.href + l.label}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="flex items-center justify-between border-b border-mist/10 py-3 text-sky last:border-0"
+              className="block border-b border-mist/10 py-3 text-sky last:border-0"
             >
-              <span>{l.label}</span>
-              <span className="font-mono text-xs text-rose">{l.grade}</span>
+              {l.label}
             </Link>
           ))}
         </div>

@@ -6,9 +6,9 @@ export default function Contact() {
     <section id="contact" className="topo-bg grain relative bg-evergreen-deep py-20">
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
-          kicker="Anchor · Belay"
-          title="Looking for a belay partner?"
-          blurb="Internships, collabs, climbing partners — my inbox is open. Placeholder form: wire to Formspree or your email."
+          kicker="Contact"
+          title="Let's connect"
+          blurb="Internships, collaborations, or side-project ideas — my inbox is open. (If you climb too, even better.)"
         />
         <div className="grid gap-6 md:grid-cols-[0.9fr_1.1fr]">
           <div className="reveal rounded-3xl border border-mist/15 bg-evergreen p-7">
@@ -64,7 +64,7 @@ export default function Contact() {
                 required
                 name="message"
                 rows={4}
-                placeholder="Project, internship, or weekend at the crag?"
+                placeholder="What would you like to talk about?"
                 className="mt-2 w-full rounded-2xl border border-taupe/30 bg-white px-4 py-3 outline-none placeholder:text-taupe/60 focus:border-rose"
               />
             </label>
@@ -72,11 +72,8 @@ export default function Contact() {
               type="submit"
               className="hold-hover mt-5 w-full rounded-full bg-rose py-3 font-semibold text-evergreen"
             >
-              Tie In — Send Message
+              Send Message
             </button>
-            <p className="mt-3 text-center font-mono text-[11px] uppercase tracking-widest text-taupe">
-              On belay?
-            </p>
           </form>
         </div>
       </div>
