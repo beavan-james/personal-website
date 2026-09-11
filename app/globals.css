@@ -1,26 +1,92 @@
+@import url('https://fonts.cdnfonts.com/css/agraham');
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-evergreen: #1a281f;
+  --color-evergreen-deep: #121e16;
+  --color-taupe: #635255;
+  --color-rose: #ce7b91;
+  --color-rose-deep: #a8566e;
+  --color-sky: #c0e8f9;
+  --color-mist: #b8d3d1;
+  --color-cream: #f6f1e8;
+
+  --font-display: "Agraham", "Georgia", serif;
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono), ui-monospace, monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-evergreen);
+  color: var(--color-cream);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+}
+
+/* Topo-map contour background (pure CSS/SVG tiling) */
+.topo-bg {
+  background-image: url("data:image/svg+xml,%3Csvg width='240' height='240' viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23b8d3d1' stroke-opacity='0.16' stroke-width='1.2'%3E%3Cpath d='M20 120c0-55 40-95 100-95s100 40 100 95-40 95-100 95-100-40-100-95z'/%3E%3Cpath d='M45 120c0-41 30-70 75-70s75 29 75 70-30 70-75 70-75-29-75-70z'/%3E%3Cpath d='M70 120c0-27 20-45 50-45s50 18 50 45-20 45-50 45-50-18-50-45z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.topo-bg-light {
+  background-image: url("data:image/svg+xml,%3Csvg width='240' height='240' viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%231a281f' stroke-opacity='0.10' stroke-width='1.2'%3E%3Cpath d='M20 120c0-55 40-95 100-95s100 40 100 95-40 95-100 95-100-40-100-95z'/%3E%3Cpath d='M45 120c0-41 30-70 75-70s75 29 75 70-30 70-75 70-75-29-75-70z'/%3E%3Cpath d='M70 120c0-27 20-45 50-45s50 18 50 45-20 45-50 45-50-18-50-45z'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.08;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Rope scroll progress */
+.rope-progress {
+  transform-origin: left;
+}
+
+/* Hold wobble on hover */
+.hold-hover {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.hold-hover:hover {
+  transform: translateY(-4px) rotate(-2deg) scale(1.03);
+}
+
+/* Reveal on scroll (progressive enhancement, no JS lib) */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Custom selection */
+::selection {
+  background: var(--color-rose);
+  color: var(--color-evergreen);
 }
