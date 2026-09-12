@@ -1,0 +1,14 @@
+.git
+.gitignore
+.next
+out
+build
+node_modules
+.npm
+.env
+.env*
+.vercel
+coverage
+*.pem
+.DS_Store
+README.md
