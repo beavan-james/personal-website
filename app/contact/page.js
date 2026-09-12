@@ -2,8 +2,8 @@ import Link from "next/link";
 import { site } from "../../lib/site";
 
 export const metadata = {
-  title: "Contact — James Beavan",
-  description: `Contact ${site.name} — ${site.email}`,
+  title: "Contact | James Beavan",
+  description: `Contact ${site.name}, ${site.email}`,
 };
 
 export default function ContactPage() {

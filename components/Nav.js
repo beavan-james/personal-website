@@ -32,7 +32,7 @@ export default function Nav() {
           current = id;
         }
       }
-      // Contact is short and sits at the very bottom — the viewport can hit
+      // Contact is short and sits at the very bottom, so the viewport can hit
       // the page bottom before its top crosses the offset, so force the last
       // section active when near the bottom.
       const nearBottom =

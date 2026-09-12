@@ -39,6 +39,15 @@ export default function Timeline() {
             </div>
           ))}
         </div>
+        <div className="reveal mt-8 flex">
+          <a
+            href="/MyResume.pdf"
+            download
+            className="rounded-full bg-rose px-6 py-3 text-sm font-semibold text-evergreen transition-colors hover:bg-rose-deep"
+          >
+            Download Resume ↓
+          </a>
+        </div>
       </div>
     </section>
   );

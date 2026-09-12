@@ -16,7 +16,7 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata = {
-  title: "James Beavan — Data Engineering Portfolio",
+  title: "James Beavan | Data Engineering Portfolio",
   description:
     "Georgia Tech Mathematics / Data Science student specializing in data engineering, pipelines, and ranking models.",
 };

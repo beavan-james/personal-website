@@ -31,7 +31,7 @@ export default function Hero() {
               View Projects ↓
             </Link>
             <Link
-              href={`mailto:${site.email}`}
+              href="/#contact"
               className="rounded-full border border-sky/50 px-6 py-3 font-semibold text-sky transition-colors hover:border-sky hover:bg-sky hover:text-evergreen"
             >
               Get in Touch

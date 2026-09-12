@@ -15,7 +15,7 @@ export default function Contact() {
             Let&apos;s connect
           </h2>
           <p className="mt-2 max-w-xl text-sm leading-relaxed text-mist">
-            Fastest way to reach me is email — open to data engineering roles
+            Fastest way to reach me is email, open to data engineering roles
             and collaboration.
           </p>
         </div>
@@ -65,7 +65,7 @@ export default function Contact() {
             Email me
           </a>
           <p className="font-mono text-xs uppercase tracking-widest text-mist/60">
-            {site.location} · replies in 1–2 days
+            {site.location} · replies in 1 to 2 days
           </p>
         </div>
       </div>
