@@ -31,7 +31,7 @@ export default function Projects() {
                   {p.status}
                 </span>
               </div>
-              <h3 className="font-display mt-4 text-xl leading-snug">
+              <h3 className="font-display mt-4 text-xl leading-[1.3]">
                 {p.title}
               </h3>
               <p className="mt-2 flex-1 text-sm leading-relaxed text-taupe">

@@ -32,7 +32,7 @@ export default function BlogPreview() {
               <p className="font-mono text-[11px] uppercase tracking-widest text-rose-deep">
                 {p.tag} · {p.date}
               </p>
-              <h3 className="font-display mt-3 text-lg leading-snug">
+              <h3 className="font-display mt-3 text-lg leading-[1.3]">
                 {p.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-taupe">

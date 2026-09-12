@@ -27,10 +27,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* NOTE: no line-height here on purpose. Tailwind's leading-* utilities live
+   in @layer utilities, and unlayered CSS wins over layered CSS — so any
+   line-height set here would silently override leading-tight/snug/etc.
+   and make Agraham's tall glyphs overlap. Control leading per-element. */
 .font-display {
   font-family: var(--font-display);
   letter-spacing: 0.01em;
-  line-height: 1.08;
   overflow-wrap: break-word;
   text-wrap: balance;
 }
