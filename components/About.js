@@ -32,7 +32,7 @@ export default function About() {
             {quickFacts.map((s) => (
               <div
                 key={s.label}
-                className="hold-hover rounded-3xl bg-mist p-5 text-evergreen"
+                className="accent-hover rounded-3xl bg-mist p-5 text-evergreen"
               >
                 <p className="font-mono text-[11px] uppercase tracking-widest text-taupe">
                   {s.label}

@@ -26,13 +26,13 @@ export default function Hero() {
           <div className="hero-stage hero-stage-4 mt-8 flex flex-wrap gap-3">
             <Link
               href="/#projects"
-              className="hold-hover rounded-full bg-rose px-6 py-3 font-semibold text-evergreen"
+              className="rounded-full bg-rose px-6 py-3 font-semibold text-evergreen transition-colors hover:bg-rose-deep hover:text-cream"
             >
               View Projects ↓
             </Link>
             <Link
-              href="/#contact"
-              className="hold-hover rounded-full border border-sky/50 px-6 py-3 font-semibold text-sky hover:bg-sky hover:text-evergreen"
+              href={`mailto:${site.email}`}
+              className="rounded-full border border-sky/50 px-6 py-3 font-semibold text-sky transition-colors hover:border-sky hover:bg-sky hover:text-evergreen"
             >
               Get in Touch
             </Link>
@@ -44,7 +44,7 @@ export default function Hero() {
 
         {/* At-a-glance card */}
         <aside className="hero-stage hero-stage-6">
-          <div className="hold-hover rounded-3xl border border-mist/25 bg-evergreen-deep/80 p-6 shadow-2xl backdrop-blur">
+          <div className="accent-hover rounded-3xl border border-mist/25 bg-evergreen-deep/80 p-6 shadow-2xl backdrop-blur">
             <div className="flex items-center justify-between">
               <p className="font-mono text-xs uppercase tracking-widest text-rose">
                 At a glance

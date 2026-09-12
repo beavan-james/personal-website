@@ -47,7 +47,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - **Next.js docs:** Before using unfamiliar Next.js APIs, check `node_modules/next/dist/docs/`.
 
 ## Key Paths
-- `app/page.js` — home (Hero → About → Projects → Experience → Blog preview → Contact)
+- `app/page.js` — home (Hero → About → Projects → Experience → Blog preview)
 - `app/blog/` — blog index and `[slug]` post pages
 - `components/` — UI sections and shared chrome (Nav, Footer, Reveal, etc.)
 - `lib/site.js` — name, role, projects, experience, quick facts, nav

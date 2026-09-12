@@ -178,6 +178,40 @@ body {
   transform: translateY(-4px) rotate(-2deg) scale(1.03);
 }
 
+/* Fact cards: vertical accent on the left, lift without rotation */
+.lift-hover {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.lift-hover::before,
+.accent-hover::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--color-rose);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.lift-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 28px rgb(26 40 31 / 0.2);
+}
+.lift-hover:hover::before,
+.accent-hover:hover::before {
+  transform: scaleY(1);
+}
+
+/* Accent only — no lift (at-a-glance / quick facts) */
+.accent-hover {
+  position: relative;
+  overflow: hidden;
+}
+
 /* Nav active hold */
 .nav-hold {
   transition: transform 0.25s ease, opacity 0.25s ease, box-shadow 0.25s ease;
@@ -304,8 +338,17 @@ body {
     transform: none;
     transition: none;
   }
-  .rope-progress {
+  .lift-hover,
+  .lift-hover::before,
+  .accent-hover::before {
     transition: none;
+  }
+  .lift-hover:hover {
+    transform: none;
+  }
+  .lift-hover:hover::before,
+  .accent-hover:hover::before {
+    transform: none;
   }
 }
 

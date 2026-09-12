@@ -32,6 +32,16 @@ export default function Nav() {
           current = id;
         }
       }
+      // Contact is short and sits at the very bottom — the viewport can hit
+      // the page bottom before its top crosses the offset, so force the last
+      // section active when near the bottom.
+      const nearBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 4;
+      if (nearBottom && ids.length) {
+        const lastId = ids[ids.length - 1];
+        if (document.getElementById(lastId)) current = lastId;
+      }
       setActive(current);
     };
 
@@ -60,7 +70,8 @@ export default function Nav() {
         <div className="hidden items-center gap-1 md:flex">
           {navLinks.map((l) => {
             const id = sectionIdFromHref(l.href);
-            const isActive = id != null && active === id;
+            const isRouteActive = pathname === l.href;
+            const isActive = (id != null && active === id) || isRouteActive;
             return (
               <Link
                 key={l.href + l.label}
@@ -91,7 +102,8 @@ export default function Nav() {
         <div className="border-t border-mist/15 bg-evergreen px-5 py-3 md:hidden">
           {navLinks.map((l) => {
             const id = sectionIdFromHref(l.href);
-            const isActive = id != null && active === id;
+            const isRouteActive = pathname === l.href;
+            const isActive = (id != null && active === id) || isRouteActive;
             return (
               <Link
                 key={l.href + l.label}

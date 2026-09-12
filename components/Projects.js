@@ -26,7 +26,7 @@ export default function Projects() {
               <Card
                 key={p.title}
                 {...cardProps}
-                className="reveal hold-hover flex flex-col rounded-3xl border border-evergreen/10 bg-cream p-6 shadow-lg"
+                className="reveal lift-hover flex flex-col rounded-3xl border border-evergreen/10 bg-cream p-6 shadow-lg"
               >
                 <div className="flex items-center justify-between gap-2">
                   <span className="rounded-full bg-evergreen px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-sky">

@@ -1,80 +1,72 @@
-import SectionHeading from "./SectionHeading";
 import { site } from "../lib/site";
 
 export default function Contact() {
   return (
-    <section id="contact" className="topo-bg grain relative bg-evergreen-deep py-20">
-      <div className="mx-auto max-w-6xl px-5">
-        <SectionHeading
-          kicker="Contact"
-          title="Let's connect"
-          blurb={site.contactIntro}
-        />
-        <div className="grid gap-6 md:grid-cols-[0.9fr_1.1fr]">
-          <div className="reveal rounded-3xl border border-mist/15 bg-evergreen p-7">
-            <p className="font-mono text-xs uppercase tracking-widest text-sky">
-              Contact
-            </p>
-            <a
-              href={`mailto:${site.email}`}
-              className="font-display mt-3 block text-lg leading-[1.35] break-all text-cream hover:text-rose"
-            >
-              {site.email}
-            </a>
-            <div className="mt-6 space-y-2">
-              {site.socials.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  className="flex items-center justify-between rounded-2xl bg-mist/10 px-4 py-3 text-sky hover:bg-mist/20"
-                >
-                  {s.label} <span>↗</span>
-                </a>
-              ))}
-            </div>
-          </div>
-          <form
-            className="reveal rounded-3xl bg-cream p-7 text-evergreen"
-            action={`mailto:${site.email}`}
-            method="post"
-            encType="text/plain"
+    <section
+      id="contact"
+      className="topo-bg grain relative bg-evergreen-deep py-15"
+    >
+      <div className="relative mx-auto max-w-5xl px-5">
+        <div className="reveal mb-4">
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-rose">
+            ⌁ Contact
+          </p>
+          <h2 className="font-display mt-2 text-xl leading-[1.35] text-cream text-balance md:text-2xl">
+            Let&apos;s connect
+          </h2>
+          <p className="mt-2 max-w-xl text-sm leading-relaxed text-mist">
+            Fastest way to reach me is email — open to data engineering roles
+            and collaboration.
+          </p>
+        </div>
+
+        <div className="mt-5 grid grid-cols-3 gap-3">
+          <a
+            href={`mailto:${site.email}`}
+            className="reveal lift-hover flex flex-col rounded-2xl border border-mist/15 bg-evergreen p-4"
           >
-            <label className="block text-sm font-semibold">
-              Name
-              <input
-                required
-                name="name"
-                placeholder="Your name"
-                className="mt-2 w-full rounded-2xl border border-taupe/30 bg-white px-4 py-3 outline-none placeholder:text-taupe/60 focus:border-rose"
-              />
-            </label>
-            <label className="mt-4 block text-sm font-semibold">
+            <p className="font-mono text-[10px] uppercase tracking-widest text-rose">
               Email
-              <input
-                required
-                type="email"
-                name="email"
-                placeholder="you@school.edu"
-                className="mt-2 w-full rounded-2xl border border-taupe/30 bg-white px-4 py-3 outline-none placeholder:text-taupe/60 focus:border-rose"
-              />
-            </label>
-            <label className="mt-4 block text-sm font-semibold">
-              Message
-              <textarea
-                required
-                name="message"
-                rows={4}
-                placeholder="What would you like to talk about?"
-                className="mt-2 w-full rounded-2xl border border-taupe/30 bg-white px-4 py-3 outline-none placeholder:text-taupe/60 focus:border-rose"
-              />
-            </label>
-            <button
-              type="submit"
-              className="hold-hover mt-5 w-full rounded-full bg-rose py-3 font-semibold text-evergreen"
+            </p>
+            <p className="mt-1.5 text-sm font-medium break-all leading-tight text-cream">
+              {site.email}
+            </p>
+            <p className="mt-2 font-mono text-[11px] uppercase tracking-widest text-sky">
+              Send email →
+            </p>
+          </a>
+
+          {site.socials.map((s) => (
+            <a
+              key={s.label}
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="reveal lift-hover flex flex-col rounded-2xl border border-mist/15 bg-evergreen p-4"
             >
-              Send Message
-            </button>
-          </form>
+              <p className="font-mono text-[10px] uppercase tracking-widest text-rose">
+                {s.label}
+              </p>
+              <p className="mt-1.5 text-sm leading-tight break-all text-mist">
+                {s.href.replace(/^https?:\/\//, "")}
+              </p>
+              <p className="mt-2 font-mono text-[11px] uppercase tracking-widest text-sky">
+                Open →
+              </p>
+            </a>
+          ))}
+        </div>
+
+        <div className="reveal mt-4 flex flex-wrap items-center gap-3">
+          <a
+            href={`mailto:${site.email}`}
+            className="rounded-full bg-rose px-5 py-2 text-sm font-semibold text-evergreen transition-colors hover:bg-rose-deep"
+          >
+            Email me
+          </a>
+          <p className="font-mono text-xs uppercase tracking-widest text-mist/60">
+            {site.location} · replies in 1–2 days
+          </p>
         </div>
       </div>
     </section>
