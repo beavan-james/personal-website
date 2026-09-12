@@ -1,16 +1,17 @@
-export default function SectionHeading({ kicker, title, blurb, tone = "dark" }) {
-  const kickerColor = tone === "dark" ? "text-rose" : "text-rose-deep";
-  const titleColor = tone === "dark" ? "text-cream" : "text-evergreen";
-  const blurbColor = tone === "dark" ? "text-mist" : "text-taupe";
+export default function SectionHeading({ kicker, title, blurb }) {
   return (
-    <div className="reveal mb-8 min-w-0 max-w-2xl">
-      <p className={`font-mono text-xs uppercase tracking-[0.25em] ${kickerColor}`}>
-        ⌁ {kicker}
+    <div className="reveal mb-8 max-w-2xl">
+      <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent-dim">
+        {kicker}
       </p>
-      <h2 className={`font-display mt-4 text-xl leading-[1.35] text-balance md:text-2xl ${titleColor}`}>
+      <h2 className="font-display mt-3 text-2xl leading-snug text-paper text-balance md:text-3xl">
         {title}
       </h2>
-      {blurb && <p className={`mt-3 max-w-xl text-base leading-relaxed ${blurbColor}`}>{blurb}</p>}
+      {blurb && (
+        <p className="mt-3 max-w-xl text-base leading-relaxed text-silver">
+          {blurb}
+        </p>
+      )}
     </div>
   );
 }

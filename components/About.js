@@ -1,17 +1,17 @@
 import SectionHeading from "./SectionHeading";
-import { quickFacts, site } from "../lib/site";
+import { glanceFacts, site } from "../lib/site";
 
 export default function About() {
   return (
-    <section id="about" className="bg-evergreen-deep py-20">
-      <div className="mx-auto max-w-6xl px-5">
+    <section className="border-t border-line bg-ink py-16">
+      <div className="mx-auto max-w-5xl px-5">
         <SectionHeading
           kicker="About"
           title={site.about.title}
           blurb={site.about.blurb}
         />
-        <div className="grid gap-6 md:grid-cols-[1.1fr_0.9fr]">
-          <div className="reveal rounded-3xl border border-mist/15 bg-evergreen p-7 leading-relaxed text-mist">
+        <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr]">
+          <div className="reveal max-w-xl leading-relaxed text-silver">
             {site.about.paragraphs.map((paragraph) => (
               <p key={paragraph.slice(0, 24)} className="mt-4 first:mt-0">
                 {paragraph}
@@ -21,28 +21,25 @@ export default function About() {
               {site.skills.map((s) => (
                 <span
                   key={s}
-                  className="rounded-full bg-sky/15 px-3 py-1.5 font-mono text-xs text-sky"
+                  className="rounded-full border border-line px-3 py-1.5 font-mono text-xs text-silver"
                 >
                   {s}
                 </span>
               ))}
             </div>
           </div>
-          <div className="reveal grid grid-cols-2 gap-4">
-            {quickFacts.map((s) => (
-              <div
-                key={s.label}
-                className="accent-hover rounded-3xl bg-mist p-5 text-evergreen"
-              >
-                <p className="font-mono text-[11px] uppercase tracking-widest text-taupe">
-                  {s.label}
-                </p>
-                <p className="font-display mt-3 text-base leading-[1.35] break-words text-evergreen">
-                  {s.value}
-                </p>
+          <dl className="reveal h-fit divide-y divide-line rounded-2xl border border-line bg-coal">
+            {glanceFacts.map(({ label, value }) => (
+              <div key={label} className="flex items-baseline justify-between gap-4 px-5 py-4">
+                <dt className="font-mono text-[11px] uppercase tracking-widest text-muted">
+                  {label}
+                </dt>
+                <dd className="text-right text-sm font-medium text-paper">
+                  {value}
+                </dd>
               </div>
             ))}
-          </div>
+          </dl>
         </div>
       </div>
     </section>
