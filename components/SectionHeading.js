@@ -7,7 +7,7 @@ export default function SectionHeading({ kicker, title, blurb, tone = "dark" }) 
       <p className={`font-mono text-xs uppercase tracking-[0.25em] ${kickerColor}`}>
         ⌁ {kicker}
       </p>
-      <h2 className={`font-display mt-4 text-2xl leading-[1.3] text-balance md:text-3xl ${titleColor}`}>
+      <h2 className={`font-display mt-4 text-xl leading-[1.35] text-balance md:text-2xl ${titleColor}`}>
         {title}
       </h2>
       {blurb && <p className={`mt-3 max-w-xl text-base leading-relaxed ${blurbColor}`}>{blurb}</p>}

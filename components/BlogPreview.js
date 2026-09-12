@@ -5,14 +5,14 @@ import { getAllPosts } from "../lib/posts";
 export default function BlogPreview() {
   const posts = getAllPosts().slice(0, 3);
   return (
-    <section className="bg-mist py-20 text-evergreen">
+    <section id="blog" className="bg-mist py-20 text-evergreen">
       <div className="mx-auto max-w-6xl px-5">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="min-w-0 flex-1 [&>div]:mb-0">
             <SectionHeading
               tone="light"
               kicker="Blog"
-              title="Notes on school and side projects"
+              title="Notes on pipelines and models"
             />
           </div>
           <Link
@@ -32,7 +32,7 @@ export default function BlogPreview() {
               <p className="font-mono text-[11px] uppercase tracking-widest text-rose-deep">
                 {p.tag} · {p.date}
               </p>
-              <h3 className="font-display mt-3 text-lg leading-[1.3]">
+              <h3 className="font-display mt-3 text-base leading-[1.35]">
                 {p.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-taupe">

@@ -18,11 +18,10 @@ export default function ScrollProgress() {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-[60] h-1 bg-evergreen-deep">
-      {/* rope: dashed rose line that grows */}
-      <div
-        className="rope-progress h-full bg-[repeating-linear-gradient(90deg,#ce7b91_0_10px,#1a281f_10px_16px)]"
-        style={{ width: `${w}%` }}
-      />
+      <div className="relative h-full" style={{ width: `${w}%` }}>
+        <div className="rope-progress h-full bg-[repeating-linear-gradient(90deg,#ce7b91_0_10px,#1a281f_10px_16px)]" />
+        {w > 0.5 ? <span className="rope-tip" aria-hidden /> : null}
+      </div>
     </div>
   );
 }

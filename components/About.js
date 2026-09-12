@@ -1,5 +1,5 @@
 import SectionHeading from "./SectionHeading";
-import { quickFacts } from "../lib/site";
+import { quickFacts, site } from "../lib/site";
 
 export default function About() {
   return (
@@ -7,31 +7,25 @@ export default function About() {
       <div className="mx-auto max-w-6xl px-5">
         <SectionHeading
           kicker="About"
-          title="CS student who likes shipping things"
-          blurb="Placeholder about — replace with your school, year, interests, and the kind of work you want to do next."
+          title={site.about.title}
+          blurb={site.about.blurb}
         />
         <div className="grid gap-6 md:grid-cols-[1.1fr_0.9fr]">
           <div className="reveal rounded-3xl border border-mist/15 bg-evergreen p-7 leading-relaxed text-mist">
-            <p>
-              Hey, I&apos;m a placeholder human. I study computer science and
-              enjoy building web apps — from course projects to weekend hacks.
-            </p>
-            <p className="mt-4">
-              Coursework so far: data structures and web dev, plus hackathons
-              and helping out in intro CS. Outside of class I climb, which is
-              good for problem-solving stamina if nothing else.
-            </p>
+            {site.about.paragraphs.map((paragraph) => (
+              <p key={paragraph.slice(0, 24)} className="mt-4 first:mt-0">
+                {paragraph}
+              </p>
+            ))}
             <div className="mt-6 flex flex-wrap gap-2">
-              {["JavaScript", "Python", "React", "Next.js", "SQL", "Git"].map(
-                (s) => (
-                  <span
-                    key={s}
-                    className="rounded-full bg-sky/15 px-3 py-1.5 font-mono text-xs text-sky"
-                  >
-                    {s}
-                  </span>
-                )
-              )}
+              {site.skills.map((s) => (
+                <span
+                  key={s}
+                  className="rounded-full bg-sky/15 px-3 py-1.5 font-mono text-xs text-sky"
+                >
+                  {s}
+                </span>
+              ))}
             </div>
           </div>
           <div className="reveal grid grid-cols-2 gap-4">
@@ -43,7 +37,9 @@ export default function About() {
                 <p className="font-mono text-[11px] uppercase tracking-widest text-taupe">
                   {s.label}
                 </p>
-                <p className="font-display mt-3 text-lg leading-[1.3] break-words text-cream">{s.value}</p>
+                <p className="font-display mt-3 text-base leading-[1.35] break-words text-evergreen">
+                  {s.value}
+                </p>
               </div>
             ))}
           </div>

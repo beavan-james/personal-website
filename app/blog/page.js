@@ -2,8 +2,8 @@ import Link from "next/link";
 import { getAllPosts } from "../../lib/posts";
 
 export const metadata = {
-  title: "Blog — Alex Carter",
-  description: "Notes on school, code, and side projects.",
+  title: "Blog — James Beavan",
+  description: "Notes on data pipelines, ranking models, and analytics work.",
 };
 
 export default function BlogIndex() {
@@ -14,15 +14,12 @@ export default function BlogIndex() {
         <p className="font-mono text-xs uppercase tracking-[0.25em] text-rose">
           ⌁ Blog
         </p>
-        <h1 className="font-display mt-3 text-3xl leading-tight text-cream text-balance md:text-4xl">
+        <h1 className="font-display mt-3 text-2xl leading-[1.35] text-cream text-balance md:text-3xl">
           Notes worth keeping
         </h1>
         <p className="mt-3 text-base text-mist">
-          Placeholder blog — replace with MDX later. Posts are static data in{" "}
-          <code className="rounded bg-mist/15 px-1.5 py-0.5 font-mono text-sm text-sky">
-            lib/posts.js
-          </code>
-          .
+          Short notes on pipelines, ranking models, and analytics work from
+          internships and side projects.
         </p>
         <div className="mt-10 space-y-4">
           {posts.map((p) => (
@@ -34,7 +31,7 @@ export default function BlogIndex() {
               <p className="font-mono text-[11px] uppercase tracking-widest text-rose">
                 {p.tag} · {p.date}
               </p>
-              <h2 className="font-display mt-2 text-xl leading-snug text-cream">
+              <h2 className="font-display mt-2 text-lg leading-snug text-cream">
                 {p.title}
               </h2>
               <p className="mt-2 text-mist">{p.excerpt}</p>

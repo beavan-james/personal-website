@@ -8,7 +8,7 @@ export default function Contact() {
         <SectionHeading
           kicker="Contact"
           title="Let's connect"
-          blurb="Internships, collaborations, or side-project ideas — my inbox is open. (If you climb too, even better.)"
+          blurb={site.contactIntro}
         />
         <div className="grid gap-6 md:grid-cols-[0.9fr_1.1fr]">
           <div className="reveal rounded-3xl border border-mist/15 bg-evergreen p-7">
@@ -17,7 +17,7 @@ export default function Contact() {
             </p>
             <a
               href={`mailto:${site.email}`}
-              className="font-display mt-3 block text-xl leading-[1.3] break-all text-cream hover:text-rose"
+              className="font-display mt-3 block text-lg leading-[1.35] break-all text-cream hover:text-rose"
             >
               {site.email}
             </a>

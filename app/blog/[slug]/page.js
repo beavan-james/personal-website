@@ -20,7 +20,7 @@ export default async function BlogPost({ params }) {
   if (!post) {
     return (
       <main className="mx-auto max-w-3xl px-5 py-20">
-        <h1 className="font-display text-4xl text-cream">Not found (404)</h1>
+        <h1 className="font-display text-3xl leading-[1.35] text-cream">Not found (404)</h1>
         <Link href="/blog" className="mt-4 inline-block text-sky">
           ← Back to blog
         </Link>
@@ -34,7 +34,7 @@ export default async function BlogPost({ params }) {
         <p className="font-mono text-xs uppercase tracking-widest text-rose-deep">
           {post.tag} · {post.date}
         </p>
-        <h1 className="font-display mt-3 text-3xl leading-tight text-balance md:text-4xl">
+        <h1 className="font-display mt-3 text-2xl leading-[1.35] text-balance md:text-3xl">
           {post.title}
         </h1>
         <p className="mt-4 border-l-4 border-rose bg-sky/40 p-4 italic text-taupe">

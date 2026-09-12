@@ -1,11 +1,44 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { navLinks, site } from "../lib/site";
+
+function sectionIdFromHref(href) {
+  return href.startsWith("/#") ? href.slice(2) : null;
+}
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
+  const [active, setActive] = useState("top");
+  const pathname = usePathname();
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      setActive(null);
+      return undefined;
+    }
+
+    const ids = navLinks.map((l) => sectionIdFromHref(l.href)).filter(Boolean);
+
+    const onScroll = () => {
+      const offset = 120;
+      let current = ids[0] ?? "top";
+      for (const id of ids) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= offset) {
+          current = id;
+        }
+      }
+      setActive(current);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [pathname]);
 
   return (
     <header className="sticky top-1 z-50 border-b border-mist/20 bg-evergreen/90 backdrop-blur">
@@ -15,7 +48,7 @@ export default function Nav() {
             ◈
           </span>
           <span className="leading-tight">
-            <span className="font-display block text-lg text-cream">
+            <span className="font-display block text-base text-cream">
               {site.name}
             </span>
             <span className="block font-mono text-[11px] uppercase tracking-widest text-mist">
@@ -25,16 +58,24 @@ export default function Nav() {
         </Link>
 
         <div className="hidden items-center gap-1 md:flex">
-          {navLinks.map((l) => (
-            <Link
-              key={l.href + l.label}
-              href={l.href}
-              className="group rounded-full px-3 py-2 text-sm text-sky/90 hover:bg-mist/15 hover:text-cream"
-            >
-              <span className="mr-1.5 inline-block h-2 w-2 rounded-full bg-rose align-middle opacity-80 group-hover:scale-125" />
-              {l.label}
-            </Link>
-          ))}
+          {navLinks.map((l) => {
+            const id = sectionIdFromHref(l.href);
+            const isActive = id != null && active === id;
+            return (
+              <Link
+                key={l.href + l.label}
+                href={l.href}
+                className={`group rounded-full px-3 py-2 text-sm transition-colors ${
+                  isActive
+                    ? "nav-link-active bg-mist/15 text-cream"
+                    : "text-sky/90 hover:bg-mist/15 hover:text-cream"
+                }`}
+              >
+                <span className="nav-hold mr-1.5 inline-block h-2 w-2 rounded-full bg-rose align-middle opacity-80 group-hover:scale-125" />
+                {l.label}
+              </Link>
+            );
+          })}
         </div>
 
         <button
@@ -48,16 +89,23 @@ export default function Nav() {
 
       {open && (
         <div className="border-t border-mist/15 bg-evergreen px-5 py-3 md:hidden">
-          {navLinks.map((l) => (
-            <Link
-              key={l.href + l.label}
-              href={l.href}
-              onClick={() => setOpen(false)}
-              className="block border-b border-mist/10 py-3 text-sky last:border-0"
-            >
-              {l.label}
-            </Link>
-          ))}
+          {navLinks.map((l) => {
+            const id = sectionIdFromHref(l.href);
+            const isActive = id != null && active === id;
+            return (
+              <Link
+                key={l.href + l.label}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className={`block border-b border-mist/10 py-3 last:border-0 ${
+                  isActive ? "nav-link-active text-cream" : "text-sky"
+                }`}
+              >
+                <span className="nav-hold mr-2 inline-block h-2 w-2 rounded-full bg-rose align-middle" />
+                {l.label}
+              </Link>
+            );
+          })}
         </div>
       )}
     </header>

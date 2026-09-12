@@ -16,9 +16,9 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata = {
-  title: "Alex Carter — CS Student Portfolio",
+  title: "James Beavan — Data Engineering Portfolio",
   description:
-    "Personal website of a computer science student. Projects, experience, and blog — with a subtle climbing-inspired theme.",
+    "Georgia Tech Mathematics / Data Science student specializing in data engineering, pipelines, and ranking models.",
 };
 
 export default function RootLayout({ children }) {
