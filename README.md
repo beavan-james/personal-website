@@ -35,3 +35,16 @@ docker build -t personal-site .
 docker run -d --restart unless-stopped --name personal-site \
   -p 80:80 -p 443:443 -e DOMAIN=portfolio.stockidence.com personal-site
 ```
+
+## Updating the live site
+
+On the server:
+
+```bash
+cd PersonalWebsite
+git pull
+docker build -t personal-site .
+docker rm -f personal-site
+docker run -d --restart unless-stopped --name personal-site \
+  -p 80:80 -p 443:443 -e DOMAIN=portfolio.stockidence.com personal-site
+```
