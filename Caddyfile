@@ -1,0 +1,13 @@
+# DOMAIN=:80 for local testing.
+# In production set DOMAIN to your hostname, e.g. DOMAIN=beavanjames.com,
+# publish ports 80+443, and Caddy will fetch/renew TLS certs automatically.
+{$DOMAIN::80} {
+	root * /srv
+	encode gzip
+	try_files {path}.html {path}/index.html {path}
+	file_server
+	handle_errors {
+		rewrite * /404.html
+		file_server
+	}
+}
