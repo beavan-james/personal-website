@@ -41,7 +41,7 @@ docker run -d --restart unless-stopped --name personal-site \
 On the server:
 
 ```bash
-cd PersonalWebsite
+cd personal-website
 git pull
 docker build -t personal-site .
 docker rm -f personal-site

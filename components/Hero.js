@@ -1,10 +1,17 @@
 import Link from "next/link";
 import { site } from "../lib/site";
+import JellyfishBackdrop from "./JellyfishBackdrop";
 
 export default function Hero() {
   return (
-    <section className="bg-ink">
-      <div className="mx-auto max-w-5xl px-5 pb-16 pt-16 md:pt-24">
+    <section className="relative overflow-hidden bg-ink">
+      <JellyfishBackdrop />
+      {/* readability scrim — solid wash on mobile, directional fade on desktop */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-ink/50 md:bg-transparent md:bg-gradient-to-r md:from-ink md:via-ink/70 md:to-transparent"
+      />
+      <div className="relative mx-auto max-w-5xl px-5 pb-16 pt-16 md:pt-24">
         <p className="hero-stage hero-stage-1 font-mono text-xs uppercase tracking-widest text-accent-dim">
           {site.location} · Data Engineer
         </p>
