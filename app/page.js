@@ -14,10 +14,10 @@ export default function Home() {
           </p>
           <div className="flex flex-wrap gap-x-8 gap-y-3 text-sm font-medium text-silver">
             <Link href="/portfolio" className="text-link">
-              Work →
+              Work <span className="link-arrow">→</span>
             </Link>
             <Link href="/experience" className="text-link">
-              Experience →
+              Experience <span className="link-arrow">→</span>
             </Link>
           </div>
         </div>

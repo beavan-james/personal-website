@@ -44,7 +44,7 @@ export default function Projects() {
 
                 <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
                   <p className="font-mono text-xs text-muted">{p.tags.join(" · ")}</p>
-                  <span className="text-sm font-medium text-accent">Read the case study →</span>
+                  <span className="text-sm font-medium text-accent">Read the case study <span className="link-arrow">→</span></span>
                 </div>
               </Link>
             </ViewTransition>

@@ -114,6 +114,24 @@ body {
   text-decoration-color: var(--color-accent);
 }
 
+/* Link arrows nudge in their direction on hover */
+.link-arrow {
+  display: inline-block;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+:is(.text-link, .project-card, .arrow-host):is(:hover, :focus-visible) .link-arrow {
+  transform: translateX(4px);
+}
+:is(.text-link, .project-card, .arrow-host):is(:hover, :focus-visible) .link-arrow-left {
+  transform: translateX(-4px);
+}
+:is(.text-link, .project-card, .arrow-host):is(:hover, :focus-visible) .link-arrow-down {
+  transform: translateY(3px);
+}
+:is(.text-link, .project-card, .arrow-host):is(:hover, :focus-visible) .link-arrow-out {
+  transform: translate(3px, -3px);
+}
+
 /* Project card: hovering (or keyboard focus) unfolds the case-study preview.
    Touch devices have no hover, so the preview is always open there. */
 .project-more {
@@ -215,7 +233,8 @@ body {
   .lift-hover:hover {
     transform: none;
   }
-  .project-more {
+  .project-more,
+  .link-arrow {
     transition: none;
   }
   ::view-transition-group(*),

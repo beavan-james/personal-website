@@ -37,7 +37,7 @@ export default function Timeline() {
             download
             className="text-link text-sm font-medium text-silver"
           >
-            Download resume ↓
+            Download resume <span className="link-arrow link-arrow-down">↓</span>
           </a>
         </div>
       </div>

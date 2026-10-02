@@ -27,7 +27,7 @@ export default async function CaseStudyPage({ params }) {
     <main className="flex-1 bg-ink/80 py-16">
       <div className="mx-auto max-w-5xl px-5">
         <Link href="/portfolio" className="text-link text-sm text-silver">
-          ← All work
+          <span className="link-arrow link-arrow-left">←</span> All work
         </Link>
 
         <ViewTransition name={`project-${project.slug}`} share="morph" default="none">
@@ -73,7 +73,7 @@ export default async function CaseStudyPage({ params }) {
 
         <div className="mt-16 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-line pt-8 text-sm font-medium text-silver">
           <a href={project.repo} target="_blank" rel="noopener noreferrer" className="text-link">
-            Source on GitHub ↗︎
+            Source on GitHub <span className="link-arrow link-arrow-out">↗︎</span>
           </a>
           <p className="font-mono text-xs text-muted">{project.tags.join(" · ")}</p>
         </div>

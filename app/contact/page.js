@@ -30,7 +30,7 @@ export default function ContactPage() {
               href={s.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-between gap-4 px-5 py-4 transition-colors hover:bg-ink"
+              className="arrow-host flex items-center justify-between gap-4 px-5 py-4 transition-colors hover:bg-ink"
             >
               <span>
                 <span className="block font-mono text-[11px] uppercase tracking-widest text-muted">
@@ -40,7 +40,7 @@ export default function ContactPage() {
                   {s.href.replace(/^https?:\/\//, "")}
                 </span>
               </span>
-              <span className="text-sm text-accent">→</span>
+              <span className="link-arrow text-sm text-accent">→</span>
             </a>
           ))}
         </div>

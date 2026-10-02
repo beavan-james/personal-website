@@ -13,10 +13,10 @@ export default function Hero() {
         </p>
         <div className="hero-stage hero-stage-3 mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm font-medium text-silver">
           <Link href="/portfolio" className="text-link">
-            See the work →
+            See the work <span className="link-arrow">→</span>
           </Link>
           <Link href="/contact" className="text-link">
-            Get in touch →
+            Get in touch <span className="link-arrow">→</span>
           </Link>
         </div>
         <p className="hero-stage hero-stage-4 mt-10 font-mono text-xs uppercase tracking-widest text-muted">
