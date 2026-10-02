@@ -3,8 +3,8 @@ import { site } from "../lib/site";
 
 export default function Hero() {
   return (
-    <section className="bg-ink">
-      <div className="mx-auto max-w-5xl px-5 pb-16 pt-16 md:pt-24">
+    <section>
+      <div className="mx-auto flex min-h-[85svh] max-w-5xl flex-col justify-center px-5 py-16">
         <p className="hero-stage hero-stage-1 font-mono text-xs uppercase tracking-widest text-accent-dim">
           {site.location} · Data Engineer
         </p>
@@ -29,7 +29,7 @@ export default function Hero() {
           </Link>
         </div>
         <p className="mt-8 font-mono text-xs uppercase tracking-widest text-muted">
-          {site.role} · {site.heroTags}
+          <span className="text-accent">{site.role}</span> · {site.heroTags}
         </p>
       </div>
     </section>

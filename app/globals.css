@@ -1,19 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  /* 70% — black / dark gray surfaces */
-  --color-ink: #0b0b0d;
-  --color-coal: #141417;
-  --color-line: #26262c;
+  /* Palette sampled from the snow-leopard backdrop (public/snow-leopard.jpg) */
+  /* 70% — forest-night surfaces */
+  --color-ink: #10140f;
+  --color-coal: #1a2018;
+  --color-line: #2f3729;
 
-  /* 20% — white / silver text */
-  --color-paper: #f4f4f5;
-  --color-silver: #c9c9cf;
-  --color-muted: #8f8f98;
+  /* 20% — snow-fur / lichen text */
+  --color-paper: #efebe1;
+  --color-silver: #c6c3b4;
+  --color-muted: #8f917f;
 
-  /* 10% — lime accent */
-  --color-accent: #d0fe1d;
-  --color-accent-dim: #d0fe1d;
+  /* 10% — leopard-eye gold accent */
+  --color-accent: #d8c38c;
+  --color-accent-dim: #c4ae76;
 
   --font-display: var(--font-ubuntu), ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
@@ -25,7 +26,7 @@ html {
 }
 
 body {
-  background: var(--color-ink);
+  background-color: var(--color-ink);
   color: var(--color-paper);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
@@ -43,13 +44,96 @@ body {
   text-wrap: balance;
 }
 
+/* Fixed photo backdrop behind every page. A fixed element (rather than
+   background-attachment: fixed) so it also stays put on iOS Safari. The
+   photo is mirrored so the leopard sits right, looking toward the copy. */
+.site-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-color: var(--color-ink);
+}
+.site-backdrop::before,
+.site-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+.site-backdrop {
+  --backdrop-progress: 0;
+}
+/* Mirrored + slightly oversized so the scroll blur never shows soft edges */
+.site-backdrop::before {
+  background: url("/snow-leopard.jpg") 30% 40% / cover no-repeat;
+  transform: scale(-1.04, 1.04);
+  filter: blur(calc(var(--backdrop-progress) * 6px));
+}
+/* Scrim: darker on the left where copy sits, toward the bottom, and
+   progressively as the hero scrolls away (--backdrop-progress 0 → 1) */
+.site-backdrop::after {
+  background:
+    linear-gradient(rgb(16 20 15 / calc(var(--backdrop-progress) * 0.55)), rgb(16 20 15 / calc(var(--backdrop-progress) * 0.55))),
+    linear-gradient(90deg, rgb(16 20 15 / 0.85) 0%, rgb(16 20 15 / 0.45) 55%, rgb(16 20 15 / 0.15) 100%),
+    linear-gradient(180deg, rgb(16 20 15 / 0) 50%, rgb(16 20 15 / 0.7) 100%);
+}
+@media (max-width: 767px) {
+  .site-backdrop::after {
+    background:
+      linear-gradient(rgb(16 20 15 / calc(var(--backdrop-progress) * 0.5)), rgb(16 20 15 / calc(var(--backdrop-progress) * 0.5))),
+      linear-gradient(rgb(16 20 15 / 0.7), rgb(16 20 15 / 0.7));
+  }
+}
+.site-rain {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+/* Click ripple — a raindrop ring where the visitor clicks */
+.click-ripple {
+  position: fixed;
+  z-index: 100;
+  width: 76px;
+  height: 76px;
+  margin: -38px 0 0 -38px;
+  border: 1.5px solid rgb(216 195 140 / 0.75);
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgb(216 195 140 / 0) 55%, rgb(216 195 140 / 0.1) 100%);
+  pointer-events: none;
+  animation: click-ripple 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes click-ripple {
+  from {
+    opacity: 1;
+    transform: scale(0.1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+/* About: skill chips + glance card — simple gold border on hover,
+   matching the portfolio cards */
+.chip-hover,
+.glance-card {
+  transition: border-color 0.25s ease;
+}
+.chip-hover:hover,
+.glance-card:hover {
+  border-color: rgb(216 195 140 / 0.5);
+}
+
 /* Minimal card lift — no rotation, no color shift */
 .lift-hover {
   transition: transform 0.25s ease, border-color 0.25s ease;
 }
 .lift-hover:hover {
   transform: translateY(-3px);
-  border-color: rgb(208 254 29 / 0.5);
+  border-color: rgb(216 195 140 / 0.5);
 }
 
 /* Hero staged entrance — kept subtle */
@@ -106,6 +190,9 @@ body {
   .lift-hover,
   .lift-hover:hover {
     transform: none;
+  }
+  .site-backdrop::before {
+    filter: none;
   }
 }
 
