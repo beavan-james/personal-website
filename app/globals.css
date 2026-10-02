@@ -96,14 +96,14 @@ body {
 .click-ripple {
   position: fixed;
   z-index: 100;
-  width: 88px;
-  height: 88px;
-  margin: -44px 0 0 -44px;
-  border: 2px solid rgb(216 195 140 / 0.9);
+  width: 76px;
+  height: 76px;
+  margin: -38px 0 0 -38px;
+  border: 1.5px solid rgb(216 195 140 / 0.75);
   border-radius: 9999px;
-  background: radial-gradient(circle, rgb(216 195 140 / 0) 55%, rgb(216 195 140 / 0.15) 100%);
+  background: radial-gradient(circle, rgb(216 195 140 / 0) 55%, rgb(216 195 140 / 0.1) 100%);
   pointer-events: none;
-  animation: click-ripple 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: click-ripple 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 @keyframes click-ripple {
   from {
