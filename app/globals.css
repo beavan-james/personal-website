@@ -96,13 +96,14 @@ body {
 .click-ripple {
   position: fixed;
   z-index: 100;
-  width: 64px;
-  height: 64px;
-  margin: -32px 0 0 -32px;
-  border: 1px solid rgb(216 195 140 / 0.7);
+  width: 88px;
+  height: 88px;
+  margin: -44px 0 0 -44px;
+  border: 2px solid rgb(216 195 140 / 0.9);
   border-radius: 9999px;
+  background: radial-gradient(circle, rgb(216 195 140 / 0) 55%, rgb(216 195 140 / 0.15) 100%);
   pointer-events: none;
-  animation: click-ripple 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: click-ripple 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 @keyframes click-ripple {
   from {
@@ -115,35 +116,15 @@ body {
   }
 }
 
-/* About: skill chips + glance card highlight */
-.chip-hover {
-  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease,
-    transform 0.2s ease;
-}
-.chip-hover:hover {
-  border-color: rgb(216 195 140 / 0.6);
-  background-color: rgb(216 195 140 / 0.1);
-  color: var(--color-paper);
-  transform: translateY(-2px);
-}
+/* About: skill chips + glance card — simple gold border on hover,
+   matching the portfolio cards */
+.chip-hover,
 .glance-card {
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition: border-color 0.25s ease;
 }
+.chip-hover:hover,
 .glance-card:hover {
-  border-color: rgb(216 195 140 / 0.45);
-  box-shadow: 0 0 0 1px rgb(216 195 140 / 0.12), 0 12px 40px -12px rgb(216 195 140 / 0.25);
-}
-.glance-row {
-  transition: background-color 0.2s ease;
-}
-.glance-row:hover {
-  background-color: rgb(216 195 140 / 0.06);
-}
-.glance-row dt {
-  transition: color 0.2s ease;
-}
-.glance-row:hover dt {
-  color: var(--color-accent);
+  border-color: rgb(216 195 140 / 0.5);
 }
 
 /* Minimal card lift — no rotation, no color shift */
@@ -207,9 +188,7 @@ body {
     animation: none;
   }
   .lift-hover,
-  .lift-hover:hover,
-  .chip-hover,
-  .chip-hover:hover {
+  .lift-hover:hover {
     transform: none;
   }
   .site-backdrop::before {

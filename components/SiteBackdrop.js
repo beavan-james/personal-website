@@ -52,9 +52,10 @@ export default function SiteBackdrop() {
     const makeDrop = (randomY) => ({
       x: Math.random() * width,
       y: randomY ? Math.random() * height : -20,
-      len: 8 + Math.random() * 14,
+      len: 3 + Math.random() * 4,
+      width: 1.4 + Math.random() * 0.8,
       speed: 4 + Math.random() * 6,
-      alpha: 0.08 + Math.random() * 0.22,
+      alpha: 0.12 + Math.random() * 0.25,
     });
 
     const resize = () => {
@@ -76,10 +77,10 @@ export default function SiteBackdrop() {
     const tick = () => {
       wind += (targetWind - wind) * 0.03;
       ctx.clearRect(0, 0, width, height);
-      ctx.lineWidth = 1;
       ctx.lineCap = "round";
       for (const d of drops) {
         const dx = wind * d.len;
+        ctx.lineWidth = d.width;
         ctx.strokeStyle = `rgba(226, 232, 222, ${d.alpha})`;
         ctx.beginPath();
         ctx.moveTo(d.x, d.y);

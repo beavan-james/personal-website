@@ -30,7 +30,7 @@ export default function About() {
           </div>
           <dl className="reveal glance-card h-fit divide-y divide-line overflow-hidden rounded-2xl border border-line bg-coal">
             {glanceFacts.map(({ label, value }) => (
-              <div key={label} className="glance-row flex items-baseline justify-between gap-4 px-5 py-4">
+              <div key={label} className="flex items-baseline justify-between gap-4 px-5 py-4">
                 <dt className="font-mono text-[11px] uppercase tracking-widest text-muted">
                   {label}
                 </dt>

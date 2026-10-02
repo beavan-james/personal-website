@@ -29,7 +29,7 @@ export default function Hero() {
           </Link>
         </div>
         <p className="mt-8 font-mono text-xs uppercase tracking-widest text-muted">
-          {site.role} · {site.heroTags}
+          <span className="text-accent">{site.role}</span> · {site.heroTags}
         </p>
       </div>
     </section>
