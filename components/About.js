@@ -21,16 +21,16 @@ export default function About() {
               {site.skills.map((s) => (
                 <span
                   key={s}
-                  className="rounded-full border border-line px-3 py-1.5 font-mono text-xs text-silver"
+                  className="chip-hover rounded-full border border-line px-3 py-1.5 font-mono text-xs text-silver"
                 >
                   {s}
                 </span>
               ))}
             </div>
           </div>
-          <dl className="reveal h-fit divide-y divide-line rounded-2xl border border-line bg-coal">
+          <dl className="reveal glance-card h-fit divide-y divide-line overflow-hidden rounded-2xl border border-line bg-coal">
             {glanceFacts.map(({ label, value }) => (
-              <div key={label} className="flex items-baseline justify-between gap-4 px-5 py-4">
+              <div key={label} className="glance-row flex items-baseline justify-between gap-4 px-5 py-4">
                 <dt className="font-mono text-[11px] uppercase tracking-widest text-muted">
                   {label}
                 </dt>

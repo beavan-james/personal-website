@@ -60,20 +60,90 @@ body {
   position: absolute;
   inset: 0;
 }
+.site-backdrop {
+  --backdrop-progress: 0;
+}
+/* Mirrored + slightly oversized so the scroll blur never shows soft edges */
 .site-backdrop::before {
   background: url("/snow-leopard.jpg") 30% 40% / cover no-repeat;
-  transform: scaleX(-1);
+  transform: scale(-1.04, 1.04);
+  filter: blur(calc(var(--backdrop-progress) * 6px));
 }
-/* Scrim: darker on the left where copy sits, and toward the bottom */
+/* Scrim: darker on the left where copy sits, toward the bottom, and
+   progressively as the hero scrolls away (--backdrop-progress 0 → 1) */
 .site-backdrop::after {
   background:
+    linear-gradient(rgb(16 20 15 / calc(var(--backdrop-progress) * 0.55)), rgb(16 20 15 / calc(var(--backdrop-progress) * 0.55))),
     linear-gradient(90deg, rgb(16 20 15 / 0.85) 0%, rgb(16 20 15 / 0.45) 55%, rgb(16 20 15 / 0.15) 100%),
     linear-gradient(180deg, rgb(16 20 15 / 0) 50%, rgb(16 20 15 / 0.7) 100%);
 }
 @media (max-width: 767px) {
   .site-backdrop::after {
-    background: rgb(16 20 15 / 0.7);
+    background:
+      linear-gradient(rgb(16 20 15 / calc(var(--backdrop-progress) * 0.5)), rgb(16 20 15 / calc(var(--backdrop-progress) * 0.5))),
+      linear-gradient(rgb(16 20 15 / 0.7), rgb(16 20 15 / 0.7));
   }
+}
+.site-rain {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+
+/* Click ripple — a raindrop ring where the visitor clicks */
+.click-ripple {
+  position: fixed;
+  z-index: 100;
+  width: 64px;
+  height: 64px;
+  margin: -32px 0 0 -32px;
+  border: 1px solid rgb(216 195 140 / 0.7);
+  border-radius: 9999px;
+  pointer-events: none;
+  animation: click-ripple 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes click-ripple {
+  from {
+    opacity: 1;
+    transform: scale(0.1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+/* About: skill chips + glance card highlight */
+.chip-hover {
+  transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease,
+    transform 0.2s ease;
+}
+.chip-hover:hover {
+  border-color: rgb(216 195 140 / 0.6);
+  background-color: rgb(216 195 140 / 0.1);
+  color: var(--color-paper);
+  transform: translateY(-2px);
+}
+.glance-card {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.glance-card:hover {
+  border-color: rgb(216 195 140 / 0.45);
+  box-shadow: 0 0 0 1px rgb(216 195 140 / 0.12), 0 12px 40px -12px rgb(216 195 140 / 0.25);
+}
+.glance-row {
+  transition: background-color 0.2s ease;
+}
+.glance-row:hover {
+  background-color: rgb(216 195 140 / 0.06);
+}
+.glance-row dt {
+  transition: color 0.2s ease;
+}
+.glance-row:hover dt {
+  color: var(--color-accent);
 }
 
 /* Minimal card lift — no rotation, no color shift */
@@ -137,8 +207,13 @@ body {
     animation: none;
   }
   .lift-hover,
-  .lift-hover:hover {
+  .lift-hover:hover,
+  .chip-hover,
+  .chip-hover:hover {
     transform: none;
+  }
+  .site-backdrop::before {
+    filter: none;
   }
 }
 

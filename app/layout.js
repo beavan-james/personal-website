@@ -3,6 +3,8 @@ import "./globals.css";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import Reveal from "../components/Reveal";
+import SiteBackdrop from "../components/SiteBackdrop";
+import ClickRipple from "../components/ClickRipple";
 
 const body = Ubuntu({
   variable: "--font-body",
@@ -34,7 +36,8 @@ export default function RootLayout({ children }) {
       <body
         className={`${body.variable} ${mono.variable} ${display.variable} min-h-full flex flex-col bg-ink text-paper antialiased`}
       >
-        <div className="site-backdrop" aria-hidden="true" />
+        <SiteBackdrop />
+        <ClickRipple />
         <Nav />
         <div className="flex flex-1 flex-col">
           <Reveal />
