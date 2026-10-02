@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="bg-ink py-16">
+    <main className="bg-ink/80 py-16">
       <div className="mx-auto max-w-5xl px-5">
         <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent-dim">
           Contact

@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function ExperiencePage() {
   return (
-    <main className="bg-ink">
+    <main>
       <Timeline />
     </main>
   );

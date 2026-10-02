@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function PortfolioPage() {
   return (
-    <main className="bg-ink">
+    <main>
       <Projects />
     </main>
   );

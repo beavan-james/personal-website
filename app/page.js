@@ -7,7 +7,7 @@ export default function Home() {
     <main>
       <Hero />
       <About />
-      <section className="border-t border-line bg-coal py-14">
+      <section className="border-t border-line bg-coal/85 py-14">
         <div className="mx-auto flex max-w-5xl flex-col gap-4 px-5 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent-dim">

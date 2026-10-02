@@ -34,6 +34,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${body.variable} ${mono.variable} ${display.variable} min-h-full flex flex-col bg-ink text-paper antialiased`}
       >
+        <div className="site-backdrop" aria-hidden="true" />
         <Nav />
         <div className="flex-1">
           <Reveal />

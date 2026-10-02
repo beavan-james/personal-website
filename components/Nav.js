@@ -10,7 +10,7 @@ export default function Nav() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 border-b border-line bg-ink/90 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-line bg-ink/75 backdrop-blur-md">
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4">
         <Link href="/" className="leading-tight">
           <span className="font-display block text-lg text-paper">
