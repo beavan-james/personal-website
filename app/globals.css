@@ -16,7 +16,7 @@
   --color-accent: #d8c38c;
   --color-accent-dim: #c4ae76;
 
-  --font-display: var(--font-ubuntu), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, ui-sans-serif, system-ui, sans-serif;
   --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-mono), ui-monospace, monospace;
 }
@@ -38,8 +38,9 @@ body {
    Control leading per-element. */
 .font-display {
   font-family: var(--font-display);
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-weight: 400;
+  font-variation-settings: "SOFT" 50;
+  letter-spacing: -0.02em;
   overflow-wrap: break-word;
   text-wrap: balance;
 }
@@ -92,39 +93,100 @@ body {
   height: 100%;
 }
 
-/* Click ripple — a raindrop ring where the visitor clicks */
-.click-ripple {
-  position: fixed;
-  z-index: 100;
-  width: 76px;
-  height: 76px;
-  margin: -38px 0 0 -38px;
-  border: 1.5px solid rgb(216 195 140 / 0.75);
-  border-radius: 9999px;
-  background: radial-gradient(circle, rgb(216 195 140 / 0) 55%, rgb(216 195 140 / 0.1) 100%);
-  pointer-events: none;
-  animation: click-ripple 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-@keyframes click-ripple {
-  from {
-    opacity: 1;
-    transform: scale(0.1);
-  }
-  to {
-    opacity: 0;
-    transform: scale(1);
-  }
-}
-
-/* About: skill chips + glance card — simple gold border on hover,
-   matching the portfolio cards */
-.chip-hover,
+/* About: "Currently" card — simple gold border on hover */
 .glance-card {
   transition: border-color 0.25s ease;
 }
-.chip-hover:hover,
 .glance-card:hover {
   border-color: rgb(216 195 140 / 0.5);
+}
+
+/* Plain text link with a gold underline that grows on hover */
+.text-link {
+  text-decoration-line: underline;
+  text-decoration-color: rgb(216 195 140 / 0.45);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+  transition: text-decoration-color 0.2s ease, color 0.2s ease;
+}
+.text-link:hover {
+  color: var(--color-paper);
+  text-decoration-color: var(--color-accent);
+}
+
+/* Nav: gold underline that glides to the current page; a fainter one
+   previews the hovered link */
+.nav-bar {
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  height: 1.5px;
+  border-radius: 9999px;
+  pointer-events: none;
+  opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease;
+}
+.nav-bar-active {
+  background: var(--color-accent);
+}
+.nav-bar-hover {
+  background: rgb(216 195 140 / 0.35);
+}
+
+/* Link arrows nudge in their direction on hover */
+.link-arrow {
+  display: inline-block;
+  transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+:is(.text-link, .project-card, .arrow-host):is(:hover, :focus-visible) .link-arrow {
+  transform: translateX(4px);
+}
+:is(.text-link, .project-card, .arrow-host):is(:hover, :focus-visible) .link-arrow-left {
+  transform: translateX(-4px);
+}
+:is(.text-link, .project-card, .arrow-host):is(:hover, :focus-visible) .link-arrow-down {
+  transform: translateY(3px);
+}
+:is(.text-link, .project-card, .arrow-host):is(:hover, :focus-visible) .link-arrow-out {
+  transform: translate(3px, -3px);
+}
+
+/* Project card: hovering (or keyboard focus) unfolds the case-study preview.
+   Touch devices have no hover, so the preview is always open there. */
+.project-more {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+}
+.project-more > div {
+  overflow: hidden;
+}
+.project-card:hover .project-more,
+.project-card:focus-visible .project-more {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+@media (hover: none) {
+  .project-more {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+}
+
+/* Card → case-study page morph (React <ViewTransition share="morph">) */
+::view-transition-group(.morph) {
+  animation-duration: 450ms;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+::view-transition-image-pair(.morph) {
+  animation-name: via-blur;
+}
+@keyframes via-blur {
+  30% {
+    filter: blur(3px);
+  }
 }
 
 /* Minimal card lift — no rotation, no color shift */
@@ -190,6 +252,16 @@ body {
   .lift-hover,
   .lift-hover:hover {
     transform: none;
+  }
+  .project-more,
+  .link-arrow,
+  .nav-bar {
+    transition: none;
+  }
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
   }
   .site-backdrop::before {
     filter: none;

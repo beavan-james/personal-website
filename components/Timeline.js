@@ -5,11 +5,7 @@ export default function Timeline() {
   return (
     <section className="border-t border-line py-16">
       <div className="mx-auto max-w-5xl px-5">
-        <SectionHeading
-          kicker="Experience"
-          title="School and work"
-          blurb={site.experienceIntro}
-        />
+        <SectionHeading title="School and work" blurb={site.experienceIntro} />
         <div className="divide-y divide-line border-y border-line">
           {experienceItems.map((e) => (
             <div key={e.title} className="reveal grid gap-2 py-8 md:grid-cols-[180px_1fr] md:gap-8">
@@ -39,9 +35,9 @@ export default function Timeline() {
           <a
             href="/MyResume.pdf"
             download
-            className="inline-block rounded-full bg-accent px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-paper"
+            className="text-link text-sm font-medium text-silver"
           >
-            Download resume
+            Download resume <span className="link-arrow link-arrow-down">↓</span>
           </a>
         </div>
       </div>

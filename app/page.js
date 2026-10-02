@@ -8,27 +8,16 @@ export default function Home() {
       <Hero />
       <About />
       <section className="border-t border-line bg-coal/85 py-14">
-        <div className="mx-auto flex max-w-5xl flex-col gap-4 px-5 md:flex-row md:items-center md:justify-between">
-          <div>
-            <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent-dim">
-              Next
-            </p>
-            <p className="font-display mt-2 text-2xl text-paper">
-              See what I&apos;ve built and where I&apos;ve worked.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/portfolio"
-              className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-ink transition-colors hover:bg-paper"
-            >
-              Portfolio →
+        <div className="mx-auto flex max-w-5xl flex-col gap-6 px-5 md:flex-row md:items-end md:justify-between">
+          <p className="font-display text-3xl text-paper">
+            See what I&apos;ve built and where I&apos;ve worked.
+          </p>
+          <div className="flex flex-wrap gap-x-8 gap-y-3 text-sm font-medium text-silver">
+            <Link href="/portfolio" className="text-link">
+              Work <span className="link-arrow">→</span>
             </Link>
-            <Link
-              href="/experience"
-              className="rounded-full border border-line px-6 py-3 text-sm font-semibold text-silver transition-colors hover:border-silver hover:text-paper"
-            >
-              Experience →
+            <Link href="/experience" className="text-link">
+              Experience <span className="link-arrow">→</span>
             </Link>
           </div>
         </div>
