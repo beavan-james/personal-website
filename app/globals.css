@@ -92,30 +92,6 @@ body {
   height: 100%;
 }
 
-/* Click ripple — a raindrop ring where the visitor clicks */
-.click-ripple {
-  position: fixed;
-  z-index: 100;
-  width: 76px;
-  height: 76px;
-  margin: -38px 0 0 -38px;
-  border: 1.5px solid rgb(216 195 140 / 0.75);
-  border-radius: 9999px;
-  background: radial-gradient(circle, rgb(216 195 140 / 0) 55%, rgb(216 195 140 / 0.1) 100%);
-  pointer-events: none;
-  animation: click-ripple 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-}
-@keyframes click-ripple {
-  from {
-    opacity: 1;
-    transform: scale(0.1);
-  }
-  to {
-    opacity: 0;
-    transform: scale(1);
-  }
-}
-
 /* About: skill chips + glance card — simple gold border on hover,
    matching the portfolio cards */
 .chip-hover,
