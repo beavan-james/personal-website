@@ -1,66 +1,54 @@
+import Link from "next/link";
+import { ViewTransition } from "react";
 import SectionHeading from "./SectionHeading";
 import { projects, site } from "../lib/site";
 
 export default function Projects() {
   return (
-    <section className="border-t border-line py-16">
+    <section className="py-20">
       <div className="mx-auto max-w-5xl px-5">
-        <SectionHeading
-          kicker="Portfolio"
-          title="Selected work"
-          blurb={site.projectsIntro}
-        />
-        <div className="grid gap-4 md:grid-cols-2">
-          {projects.map((p) => {
-            const Card = p.href ? "a" : "article";
-            const cardProps = p.href
-              ? {
-                  href: p.href,
-                  target: "_blank",
-                  rel: "noopener noreferrer",
-                }
-              : {};
-
-            return (
-              <Card
-                key={p.title}
-                {...cardProps}
-                className="reveal lift-hover flex flex-col rounded-2xl border border-line bg-coal p-6"
+        <SectionHeading title="Work" blurb={site.projectsIntro} />
+        <div className="space-y-6">
+          {projects.map((p) => (
+            <ViewTransition key={p.slug} name={`project-${p.slug}`} share="morph" default="none">
+              <Link
+                href={`/portfolio/${p.slug}`}
+                className="project-card reveal block rounded-2xl border border-line bg-coal/90 p-6 transition-colors hover:border-accent/50 md:p-8"
               >
-                <div className="flex items-center justify-between gap-2">
-                  <span className="font-mono text-[11px] uppercase tracking-widest text-accent-dim">
-                    {p.category}
-                  </span>
-                  <span
-                    className={`rounded-full border px-3 py-1 font-mono text-[11px] uppercase tracking-widest ${
-                      p.status === "Completed"
-                        ? "border-line text-muted"
-                        : "border-accent/60 text-accent"
-                    }`}
-                  >
-                    {p.status}
-                  </span>
-                </div>
-                <h3 className="font-display mt-4 text-xl leading-snug text-paper">
+                <p className="text-sm text-accent-dim">{p.category}</p>
+                <h3 className="font-display mt-2 text-3xl leading-tight text-paper md:text-4xl">
                   {p.title}
-                  {p.href ? <span className="ml-1 text-base text-muted">↗</span> : null}
                 </h3>
-                <p className="mt-2 flex-1 text-sm leading-relaxed text-silver">
-                  {p.description}
-                </p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {p.tags.map((t) => (
-                    <span
-                      key={t}
-                      className="rounded-full bg-ink px-2.5 py-1 font-mono text-[11px] text-muted"
-                    >
-                      {t}
-                    </span>
-                  ))}
+                <p className="mt-3 max-w-2xl leading-relaxed text-silver">{p.description}</p>
+
+                <div className="project-more">
+                  <div>
+                    <dl className="mt-8 grid gap-6 border-t border-line pt-6 sm:grid-cols-3">
+                      {p.metrics.map((m) => (
+                        <div key={m.label}>
+                          <dd className="font-display text-3xl text-paper">{m.value}</dd>
+                          <dt className="mt-1 text-xs text-muted">{m.label}</dt>
+                        </div>
+                      ))}
+                    </dl>
+                    <ol className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 font-mono text-xs text-silver">
+                      {p.pipeline.map((s, i) => (
+                        <li key={s.step} className="flex items-center gap-3">
+                          {i > 0 && <span className="text-accent-dim">→</span>}
+                          {s.step}
+                        </li>
+                      ))}
+                    </ol>
+                  </div>
                 </div>
-              </Card>
-            );
-          })}
+
+                <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+                  <p className="font-mono text-xs text-muted">{p.tags.join(" · ")}</p>
+                  <span className="text-sm font-medium text-accent">Read the case study →</span>
+                </div>
+              </Link>
+            </ViewTransition>
+          ))}
         </div>
       </div>
     </section>

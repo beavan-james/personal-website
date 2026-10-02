@@ -1,4 +1,4 @@
-import { Ubuntu, Ubuntu_Mono } from "next/font/google";
+import { Fraunces, Ubuntu, Ubuntu_Mono } from "next/font/google";
 import "./globals.css";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
@@ -17,10 +17,10 @@ const mono = Ubuntu_Mono({
   weight: ["400", "700"],
 });
 
-const display = Ubuntu({
-  variable: "--font-ubuntu",
+const display = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["400", "500", "700"],
+  axes: ["opsz", "SOFT"],
 });
 
 export const metadata = {
@@ -31,9 +31,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="h-full scroll-smooth">
+    <html
+      lang="en"
+      className={`${body.variable} ${mono.variable} ${display.variable} h-full scroll-smooth`}
+    >
       <body
-        className={`${body.variable} ${mono.variable} ${display.variable} min-h-full flex flex-col bg-ink text-paper antialiased`}
+        className={`min-h-full flex flex-col bg-ink text-paper antialiased`}
       >
         <SiteBackdrop />
         <Nav />

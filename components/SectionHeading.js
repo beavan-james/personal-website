@@ -1,10 +1,7 @@
-export default function SectionHeading({ kicker, title, blurb }) {
+export default function SectionHeading({ title, blurb }) {
   return (
-    <div className="reveal mb-8 max-w-2xl">
-      <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent-dim">
-        {kicker}
-      </p>
-      <h2 className="font-display mt-3 text-2xl leading-snug text-paper text-balance md:text-3xl">
+    <div className="reveal mb-10 max-w-2xl">
+      <h2 className="font-display text-3xl leading-tight text-paper text-balance md:text-4xl">
         {title}
       </h2>
       {blurb && (

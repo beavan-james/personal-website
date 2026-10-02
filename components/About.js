@@ -1,45 +1,38 @@
 import SectionHeading from "./SectionHeading";
-import { glanceFacts, site } from "../lib/site";
+import { currently, site } from "../lib/site";
 
 export default function About() {
   return (
-    <section className="border-t border-line bg-ink/80 py-16">
+    <section className="border-t border-line bg-ink/80 py-20">
       <div className="mx-auto max-w-5xl px-5">
-        <SectionHeading
-          kicker="About"
-          title={site.about.title}
-          blurb={site.about.blurb}
-        />
-        <div className="grid gap-10 md:grid-cols-[1.2fr_0.8fr]">
+        <SectionHeading title={site.about.title} blurb={site.about.blurb} />
+        <div className="grid gap-12 md:grid-cols-[1.2fr_0.8fr]">
           <div className="reveal max-w-xl leading-relaxed text-silver">
             {site.about.paragraphs.map((paragraph) => (
               <p key={paragraph.slice(0, 24)} className="mt-4 first:mt-0">
                 {paragraph}
               </p>
             ))}
-            <div className="mt-6 flex flex-wrap gap-2">
-              {site.skills.map((s) => (
-                <span
-                  key={s}
-                  className="chip-hover rounded-full border border-line px-3 py-1.5 font-mono text-xs text-silver"
-                >
-                  {s}
-                </span>
+            <dl className="mt-8 space-y-2 text-sm">
+              {site.skillGroups.map(({ label, items }) => (
+                <div key={label} className="grid grid-cols-[6rem_1fr] gap-4">
+                  <dt className="text-muted">{label}</dt>
+                  <dd className="text-paper">{items.join(" · ")}</dd>
+                </div>
               ))}
-            </div>
+            </dl>
           </div>
-          <dl className="reveal glance-card h-fit divide-y divide-line overflow-hidden rounded-2xl border border-line bg-coal">
-            {glanceFacts.map(({ label, value }) => (
-              <div key={label} className="flex items-baseline justify-between gap-4 px-5 py-4">
-                <dt className="font-mono text-[11px] uppercase tracking-widest text-muted">
-                  {label}
-                </dt>
-                <dd className="text-right text-sm font-medium text-paper">
-                  {value}
-                </dd>
-              </div>
-            ))}
-          </dl>
+          <div className="reveal glance-card h-fit rounded-2xl border border-line bg-coal px-5 py-5">
+            <p className="font-display text-xl italic text-accent">Currently</p>
+            <dl className="mt-3 divide-y divide-line">
+              {currently.map(({ label, value }) => (
+                <div key={label} className="flex items-baseline justify-between gap-4 py-3">
+                  <dt className="text-sm text-muted">{label}</dt>
+                  <dd className="text-right text-sm font-medium text-paper">{value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
         </div>
       </div>
     </section>
