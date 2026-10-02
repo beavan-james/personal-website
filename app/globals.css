@@ -114,6 +114,26 @@ body {
   text-decoration-color: var(--color-accent);
 }
 
+/* Nav: gold underline that glides to the current page; a fainter one
+   previews the hovered link */
+.nav-bar {
+  position: absolute;
+  left: 0;
+  bottom: 2px;
+  height: 1.5px;
+  border-radius: 9999px;
+  pointer-events: none;
+  opacity: 0;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    width 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease;
+}
+.nav-bar-active {
+  background: var(--color-accent);
+}
+.nav-bar-hover {
+  background: rgb(216 195 140 / 0.35);
+}
+
 /* Link arrows nudge in their direction on hover */
 .link-arrow {
   display: inline-block;
@@ -234,7 +254,8 @@ body {
     transform: none;
   }
   .project-more,
-  .link-arrow {
+  .link-arrow,
+  .nav-bar {
     transition: none;
   }
   ::view-transition-group(*),
