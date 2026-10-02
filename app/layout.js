@@ -36,7 +36,7 @@ export default function RootLayout({ children }) {
       >
         <div className="site-backdrop" aria-hidden="true" />
         <Nav />
-        <div className="flex-1">
+        <div className="flex flex-1 flex-col">
           <Reveal />
           {children}
         </div>

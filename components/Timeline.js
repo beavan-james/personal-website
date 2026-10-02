@@ -3,7 +3,7 @@ import { experienceItems, site } from "../lib/site";
 
 export default function Timeline() {
   return (
-    <section className="border-t border-line bg-ink/80 py-16">
+    <section className="border-t border-line py-16">
       <div className="mx-auto max-w-5xl px-5">
         <SectionHeading
           kicker="Experience"
