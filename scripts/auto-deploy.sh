@@ -24,6 +24,9 @@ DEPLOYED_FILE="$REPO_DIR/.git/deployed-commit"
 FAILED_FILE="$REPO_DIR/.git/failed-commit"
 DOCKER="${DOCKER:-/usr/bin/docker}"
 DOMAIN="${DOMAIN:-portfolio.stockidence.com}"
+# next build on the 1 GB box spills into swap and can take a while; this
+# only stops a genuinely wedged build from holding the lock forever.
+BUILD_TIMEOUT="${BUILD_TIMEOUT:-45m}"
 NAME=personal-site
 IMAGE=personal-site
 
@@ -79,16 +82,26 @@ healthy() {
 # Keep the running image as :previous so a bad deploy can roll back.
 "$DOCKER" image tag "$IMAGE:latest" "$IMAGE:previous" 2>/dev/null || true
 
-if ! "$DOCKER" build -t "$IMAGE:latest" . >>"$LOG" 2>&1; then
-    log "BUILD FAILED for $REMOTE (old container still serving)"
+log "building $REMOTE (timeout $BUILD_TIMEOUT)"
+started=$(date +%s)
+status=0
+timeout "$BUILD_TIMEOUT" "$DOCKER" build -t "$IMAGE:latest" . >>"$LOG" 2>&1 || status=$?
+if [ "$status" -ne 0 ]; then
+    if [ "$status" -eq 124 ]; then
+        log "BUILD TIMED OUT after $BUILD_TIMEOUT for $REMOTE (old container still serving)"
+    else
+        log "BUILD FAILED (exit $status) for $REMOTE (old container still serving)"
+    fi
     echo "$REMOTE" > "$FAILED_FILE"
     exit 1
 fi
+log "built in $(( $(date +%s) - started ))s"
 
 run_container "$IMAGE:latest"
 if healthy; then
     log "deploy ok"
     echo "$REMOTE" > "$DEPLOYED_FILE"
+    rm -f "$FAILED_FILE"
     "$DOCKER" image prune -f >/dev/null 2>&1 || true
 elif "$DOCKER" image inspect "$IMAGE:previous" >/dev/null 2>&1; then
     log "HEALTH CHECK FAILED after deploy to $REMOTE; rolling back"

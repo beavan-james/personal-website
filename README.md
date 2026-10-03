@@ -57,5 +57,15 @@ the check fails. Install it once on the server:
 ```
 
 Progress and failures are logged to `~/personal-website/auto-deploy.log`.
-Running the script by hand deploys only if `origin/main` is ahead of the
-server checkout, so skip a manual `git pull` beforehand.
+The live commit is recorded in `.git/deployed-commit` (written only after a
+healthy deploy), so an interrupted run is retried on the next tick. A commit
+whose build fails or times out (45 min) is recorded in `.git/failed-commit`
+and not retried until a new commit lands; delete that file to force a retry.
+
+On the 1 GB instance `next build` spills into swap and is slow. If you run
+the script by hand, use `nohup` so closing the SSH session doesn't kill the
+build, and close VS Code Remote first (its server uses ~250 MB):
+
+```bash
+nohup ~/personal-website/scripts/auto-deploy.sh >/dev/null 2>&1 &
+```
