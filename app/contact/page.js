@@ -23,14 +23,14 @@ export default function ContactPage() {
           {site.email}
         </a>
 
-        <div className="mt-10 divide-y divide-line rounded-2xl border border-line bg-coal">
+        <div className="mt-10 divide-y divide-line rounded-2xl border border-line bg-coal/80">
           {site.socials.map((s) => (
             <a
               key={s.label}
               href={s.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="arrow-host flex items-center justify-between gap-4 px-5 py-4 transition-colors hover:bg-ink"
+              className="arrow-host flex items-center justify-between gap-4 px-5 py-4 transition-colors hover:bg-ink/60"
             >
               <span>
                 <span className="block font-mono text-[11px] uppercase tracking-widest text-muted">

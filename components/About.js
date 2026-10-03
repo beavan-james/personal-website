@@ -5,7 +5,7 @@ export default function About() {
   return (
     <section className="border-t border-line bg-ink/80 py-20">
       <div className="mx-auto max-w-5xl px-5">
-        <SectionHeading title={site.about.title} blurb={site.about.blurb} />
+        <SectionHeading title={site.about.title} blurb={site.about.blurb} tagline />
         <div className="grid gap-12 md:grid-cols-[1.2fr_0.8fr]">
           <div className="reveal max-w-xl leading-relaxed text-silver">
             {site.about.paragraphs.map((paragraph) => (
@@ -22,7 +22,7 @@ export default function About() {
               ))}
             </dl>
           </div>
-          <div className="reveal glance-card h-fit rounded-2xl border border-line bg-coal px-5 py-5">
+          <div className="reveal glance-card h-fit rounded-2xl border border-line bg-coal/80 px-5 py-5">
             <p className="font-display text-xl text-accent">Currently</p>
             <dl className="mt-3 divide-y divide-line">
               {currently.map(({ label, value }) => (

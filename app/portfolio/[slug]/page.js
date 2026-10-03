@@ -31,7 +31,7 @@ export default async function CaseStudyPage({ params }) {
         </Link>
 
         <ViewTransition name={`project-${project.slug}`} share="morph" default="none">
-          <header className="mt-8 rounded-2xl border border-line bg-coal/90 p-6 md:p-10">
+          <header className="mt-8 rounded-2xl border border-line bg-coal/80 p-6 md:p-10">
             <p className="text-sm text-accent-dim">{project.category}</p>
             <h1 className="font-display mt-2 text-5xl leading-tight text-paper md:text-6xl">
               {project.title}
@@ -66,7 +66,31 @@ export default async function CaseStudyPage({ params }) {
           {project.sections.map((s) => (
             <section key={s.heading}>
               <h2 className="font-display text-3xl text-paper">{s.heading}</h2>
-              <p className="mt-4 text-lg leading-relaxed text-silver">{s.body}</p>
+              {[].concat(s.body).map((para) => (
+                <p key={para.slice(0, 32)} className="mt-4 text-lg leading-relaxed text-silver">
+                  {para}
+                </p>
+              ))}
+              {s.bullets && (
+                <ul className="mt-5 space-y-3">
+                  {s.bullets.map((b) => (
+                    <li key={b} className="flex gap-3 leading-relaxed text-silver">
+                      <span aria-hidden className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent-dim" />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {s.table && (
+                <dl className="mt-6 divide-y divide-line overflow-hidden rounded-2xl border border-line bg-coal/80">
+                  {s.table.rows.map(([label, value]) => (
+                    <div key={label} className="grid gap-1 px-5 py-4 sm:grid-cols-[minmax(0,14rem)_1fr] sm:gap-6">
+                      <dt className="font-mono text-xs leading-6 text-muted">{label}</dt>
+                      <dd className="text-paper">{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              )}
             </section>
           ))}
         </div>
@@ -75,6 +99,11 @@ export default async function CaseStudyPage({ params }) {
           <a href={project.repo} target="_blank" rel="noopener noreferrer" className="text-link">
             Source on GitHub <span className="link-arrow link-arrow-out">↗︎</span>
           </a>
+          {project.live && (
+            <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-link">
+              Live site <span className="link-arrow link-arrow-out">↗︎</span>
+            </a>
+          )}
           <p className="font-mono text-xs text-muted">{project.tags.join(" · ")}</p>
         </div>
       </div>

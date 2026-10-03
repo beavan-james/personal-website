@@ -3,9 +3,9 @@
 @theme {
   /* Palette sampled from the snow-leopard backdrop (public/snow-leopard.jpg) */
   /* 70% — forest-night surfaces */
-  --color-ink: #10140f;
-  --color-coal: #1a2018;
-  --color-line: #2f3729;
+  --color-ink: #0d100c;
+  --color-coal: #121612;
+  --color-line: #262c21;
 
   /* 20% — snow-fur / lichen text */
   --color-paper: #efebe1;
@@ -68,21 +68,21 @@ body {
 .site-backdrop::before {
   background: url("/snow-leopard.jpg") 30% 40% / cover no-repeat;
   transform: scale(-1.04, 1.04);
-  filter: blur(calc(var(--backdrop-progress) * 6px));
+  filter: brightness(0.8) blur(calc(var(--backdrop-progress) * 6px));
 }
 /* Scrim: darker on the left where copy sits, toward the bottom, and
    progressively as the hero scrolls away (--backdrop-progress 0 → 1) */
 .site-backdrop::after {
   background:
-    linear-gradient(rgb(16 20 15 / calc(var(--backdrop-progress) * 0.55)), rgb(16 20 15 / calc(var(--backdrop-progress) * 0.55))),
-    linear-gradient(90deg, rgb(16 20 15 / 0.85) 0%, rgb(16 20 15 / 0.45) 55%, rgb(16 20 15 / 0.15) 100%),
-    linear-gradient(180deg, rgb(16 20 15 / 0) 50%, rgb(16 20 15 / 0.7) 100%);
+    linear-gradient(rgb(13 16 12 / calc(var(--backdrop-progress) * 0.55)), rgb(13 16 12 / calc(var(--backdrop-progress) * 0.55))),
+    linear-gradient(90deg, rgb(13 16 12 / 0.85) 0%, rgb(13 16 12 / 0.45) 55%, rgb(13 16 12 / 0.15) 100%),
+    linear-gradient(180deg, rgb(13 16 12 / 0) 50%, rgb(13 16 12 / 0.7) 100%);
 }
 @media (max-width: 767px) {
   .site-backdrop::after {
     background:
-      linear-gradient(rgb(16 20 15 / calc(var(--backdrop-progress) * 0.5)), rgb(16 20 15 / calc(var(--backdrop-progress) * 0.5))),
-      linear-gradient(rgb(16 20 15 / 0.7), rgb(16 20 15 / 0.7));
+      linear-gradient(rgb(13 16 12 / calc(var(--backdrop-progress) * 0.5)), rgb(13 16 12 / calc(var(--backdrop-progress) * 0.5))),
+      linear-gradient(rgb(13 16 12 / 0.7), rgb(13 16 12 / 0.7));
   }
 }
 .site-rain {
@@ -189,15 +189,6 @@ body {
   }
 }
 
-/* Minimal card lift — no rotation, no color shift */
-.lift-hover {
-  transition: transform 0.25s ease, border-color 0.25s ease;
-}
-.lift-hover:hover {
-  transform: translateY(-3px);
-  border-color: rgb(216 195 140 / 0.5);
-}
-
 /* Hero staged entrance — kept subtle */
 .hero-stage {
   opacity: 0;
@@ -249,10 +240,6 @@ body {
     transform: none;
     animation: none;
   }
-  .lift-hover,
-  .lift-hover:hover {
-    transform: none;
-  }
   .project-more,
   .link-arrow,
   .nav-bar {
@@ -264,7 +251,7 @@ body {
     animation: none !important;
   }
   .site-backdrop::before {
-    filter: none;
+    filter: brightness(0.8);
   }
 }
 

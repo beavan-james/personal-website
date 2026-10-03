@@ -13,7 +13,7 @@ export default function Projects() {
             <ViewTransition key={p.slug} name={`project-${p.slug}`} share="morph" default="none">
               <Link
                 href={`/portfolio/${p.slug}`}
-                className="project-card reveal block rounded-2xl border border-line bg-coal/90 p-6 transition-colors hover:border-accent/50 md:p-8"
+                className="project-card reveal block rounded-2xl border border-line bg-coal/80 p-6 transition-colors hover:border-accent/50 md:p-8"
               >
                 <p className="text-sm text-accent-dim">{p.category}</p>
                 <h3 className="font-display mt-2 text-3xl leading-tight text-paper md:text-4xl">

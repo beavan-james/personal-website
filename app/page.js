@@ -7,9 +7,9 @@ export default function Home() {
     <main>
       <Hero />
       <About />
-      <section className="border-t border-line bg-coal/85 py-14">
-        <div className="mx-auto flex max-w-5xl flex-col gap-6 px-5 md:flex-row md:items-end md:justify-between">
-          <p className="font-display text-3xl text-paper">
+      <section className="border-t border-line bg-coal/85 py-8">
+        <div className="mx-auto flex max-w-5xl flex-col gap-6 px-5 md:flex-row md:items-center md:justify-between">
+          <p className="font-display text-xl text-paper md:text-2xl">
             See what I&apos;ve built and where I&apos;ve worked.
           </p>
           <div className="flex flex-wrap gap-x-8 gap-y-3 text-sm font-medium text-silver">
