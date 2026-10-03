@@ -2,7 +2,12 @@
 # Cron-driven self-deploy for the static site (same pattern as Stockidence).
 #
 # Every 5 minutes cron runs this script, which fast-forwards to origin/main
-# and rebuilds only when the deployed commit actually moved. The new image is
+# and rebuilds whenever origin/main differs from the last commit that deployed
+# successfully (recorded in .git/deployed-commit). Comparing against that
+# marker instead of HEAD means a build that is killed partway (OOM, SSH
+# hangup) is retried on the next run instead of being treated as deployed.
+# A commit whose build or health check fails outright is recorded in
+# .git/failed-commit and not retried until a newer commit lands. The new image is
 # built before the old container stops, so a failed build never takes the
 # site down, and a failed health check rolls back to the previous image.
 #
@@ -15,6 +20,8 @@ set -euo pipefail
 
 REPO_DIR="${REPO_DIR:-$HOME/personal-website}"
 LOG="$REPO_DIR/auto-deploy.log"
+DEPLOYED_FILE="$REPO_DIR/.git/deployed-commit"
+FAILED_FILE="$REPO_DIR/.git/failed-commit"
 DOCKER="${DOCKER:-/usr/bin/docker}"
 DOMAIN="${DOMAIN:-portfolio.stockidence.com}"
 NAME=personal-site
@@ -29,13 +36,14 @@ if [ -z "${DEPLOY_REMOTE:-}" ]; then
 
     cd "$REPO_DIR"
     git fetch -q origin
-    LOCAL=$(git rev-parse HEAD)
     REMOTE=$(git rev-parse origin/main)
-    if [ "$LOCAL" = "$REMOTE" ]; then
+    DEPLOYED=$(cat "$DEPLOYED_FILE" 2>/dev/null || true)
+    FAILED=$(cat "$FAILED_FILE" 2>/dev/null || true)
+    if [ "$REMOTE" = "$DEPLOYED" ] || [ "$REMOTE" = "$FAILED" ]; then
         exit 0
     fi
 
-    log "deploying $REMOTE (was $LOCAL)"
+    log "deploying $REMOTE (was ${DEPLOYED:-unknown})"
     git reset -q --hard origin/main
     # Bash keeps reading the copy of this script it opened, so without this
     # an edit to the deploy steps below would only apply one deploy late.
@@ -73,19 +81,23 @@ healthy() {
 
 if ! "$DOCKER" build -t "$IMAGE:latest" . >>"$LOG" 2>&1; then
     log "BUILD FAILED for $REMOTE (old container still serving)"
+    echo "$REMOTE" > "$FAILED_FILE"
     exit 1
 fi
 
 run_container "$IMAGE:latest"
 if healthy; then
     log "deploy ok"
+    echo "$REMOTE" > "$DEPLOYED_FILE"
     "$DOCKER" image prune -f >/dev/null 2>&1 || true
 elif "$DOCKER" image inspect "$IMAGE:previous" >/dev/null 2>&1; then
     log "HEALTH CHECK FAILED after deploy to $REMOTE; rolling back"
+    echo "$REMOTE" > "$FAILED_FILE"
     run_container "$IMAGE:previous"
     if healthy; then log "rollback ok"; else log "ROLLBACK ALSO UNHEALTHY"; fi
     exit 1
 else
     log "HEALTH CHECK FAILED after deploy to $REMOTE (no previous image)"
+    echo "$REMOTE" > "$FAILED_FILE"
     exit 1
 fi
