@@ -23,7 +23,7 @@ export default function About() {
             </dl>
           </div>
           <div className="reveal glance-card h-fit rounded-2xl border border-line bg-coal px-5 py-5">
-            <p className="font-display text-xl italic text-accent">Currently</p>
+            <p className="font-display text-xl text-accent">Currently</p>
             <dl className="mt-3 divide-y divide-line">
               {currently.map(({ label, value }) => (
                 <div key={label} className="flex items-baseline justify-between gap-4 py-3">
