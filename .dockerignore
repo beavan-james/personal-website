@@ -12,3 +12,4 @@ coverage
 *.pem
 .DS_Store
 README.md
+auto-deploy.log
