@@ -14,7 +14,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 ## Project Overview
 - **Tech Stack:** Next.js 16 (App Router), React 19, JavaScript (jsconfig), Tailwind CSS v4. No other runtime dependencies.
 - **Domain:** Portfolio-first personal website for James Beavan (Math + Data Science @ Georgia Tech, data engineering). Visual identity is a dark, forest-night palette sampled from a snow-leopard photo backdrop, with a gold accent.
-- **Architecture:** App Router pages are thin composers over section components in `components/`. All site copy (name, blurbs, nav, skills, projects, experience, "Currently" card) lives in `lib/site.js`. Keep presentation in `components/`; keep content in `lib/`. Prefer small, focused components and server components by default.
+- **Architecture:** App Router pages are thin composers over section components in `components/`. All site copy (name, blurbs, nav, skills, projects, experience) lives in `lib/site.js`. Keep presentation in `components/`; keep content in `lib/`. Prefer small, focused components and server components by default.
 
 ## Design System
 - **Palette (70 / 20 / 10):** tokens in `app/globals.css` (`@theme`). Use the Tailwind utilities (`bg-ink`, `text-silver`, `border-line`, …), not raw hex.
@@ -34,7 +34,6 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - `.link-arrow` (`-left`, `-down`, `-out`): arrows nudge on hover of `.text-link`, `.project-card`, or `.arrow-host`.
   - `.nav-bar` / `-active` / `-hover`: sliding gold underline in `Nav.js`.
   - `.project-card` + `.project-more`: hovering a portfolio card unfolds its metrics and pipeline preview (always open on touch).
-  - `.glance-card`: the About "Currently" card's gold hover border.
   - `.hero-stage-1…4`: staged hero entrance.
   - `.reveal` / `.is-visible`: reveal on scroll, toggled by `components/Reveal.js` (IntersectionObserver).
   - React `<ViewTransition name="project-<slug>" share="morph">` morphs a portfolio card into its case-study header.
@@ -46,7 +45,6 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - `navLinks`: About (`/`), Portfolio, Experience, Contact.
 - `projects[]`: each renders a card on `/portfolio` and a statically generated case study at `/portfolio/<slug>`. Shape: `slug`, `title`, `category`, `description` (card copy; keep it short), `tags`, `repo`, optional `live`, `metrics` (3, shown in a 3-column grid), `pipeline` (4 steps, 4-column grid), and `sections[]` of `{ heading, body, bullets?, table? }`, where `body` is a string or array of paragraphs and `table` is `{ rows: [[label, value], ...] }`.
 - `experienceItems[]`: `period`, `title`, `place`, `detail`, `bullets` (rendered by `Timeline.js`).
-- `currently[]`: label/value rows for the About "Currently" card.
 - `SectionHeading` takes `title`, `blurb`, and an optional `tagline` flag (gold blurb + short rule, used on About).
 
 ## Setup & Build Commands

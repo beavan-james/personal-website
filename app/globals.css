@@ -93,14 +93,6 @@ body {
   height: 100%;
 }
 
-/* About: "Currently" card — simple gold border on hover */
-.glance-card {
-  transition: border-color 0.25s ease;
-}
-.glance-card:hover {
-  border-color: rgb(216 195 140 / 0.5);
-}
-
 /* Plain text link with a gold underline that grows on hover */
 .text-link {
   text-decoration-line: underline;
