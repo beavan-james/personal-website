@@ -44,7 +44,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - `navLinks`: About (`/`), Portfolio, Experience, Contact.
 - `projects[]`: each renders a card on `/portfolio` and a statically generated case study at `/portfolio/<slug>`. Shape: `slug`, `title`, `category`, `description` (card copy; keep it short), `tags`, `repo`, optional `live`, `metrics` (3, shown in a 3-column grid), `pipeline` (4 steps, 4-column grid), and `sections[]` of `{ heading, body, bullets?, table? }`, where `body` is a string or array of paragraphs and `table` is `{ rows: [[label, value], ...] }`.
 - `experienceItems[]`: `period`, `title`, `place`, `detail`, `bullets` (rendered by `Timeline.js`).
-- `SectionHeading` takes `title`, `blurb`, and an optional `tagline` flag (gold blurb + short rule, used on About).
+- `SectionHeading` takes `title` and an optional `blurb`.
 
 ## Setup & Build Commands
 - **Install Dependencies:** `npm install`
