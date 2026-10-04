@@ -131,43 +131,20 @@ body {
   display: inline-block;
   transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
 }
-:is(.text-link, .project-card, .arrow-host):is(:hover, :focus-visible) .link-arrow {
+:is(.text-link, .arrow-host):is(:hover, :focus-visible) .link-arrow {
   transform: translateX(4px);
 }
-:is(.text-link, .project-card, .arrow-host):is(:hover, :focus-visible) .link-arrow-left {
+:is(.text-link, .arrow-host):is(:hover, :focus-visible) .link-arrow-left {
   transform: translateX(-4px);
 }
-:is(.text-link, .project-card, .arrow-host):is(:hover, :focus-visible) .link-arrow-down {
+:is(.text-link, .arrow-host):is(:hover, :focus-visible) .link-arrow-down {
   transform: translateY(3px);
 }
-:is(.text-link, .project-card, .arrow-host):is(:hover, :focus-visible) .link-arrow-out {
+:is(.text-link, .arrow-host):is(:hover, :focus-visible) .link-arrow-out {
   transform: translate(3px, -3px);
 }
 
-/* Project card: hovering (or keyboard focus) unfolds the case-study preview.
-   Touch devices have no hover, so the preview is always open there. */
-.project-more {
-  display: grid;
-  grid-template-rows: 0fr;
-  opacity: 0;
-  transition: grid-template-rows 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
-}
-.project-more > div {
-  overflow: hidden;
-}
-.project-card:hover .project-more,
-.project-card:focus-visible .project-more {
-  grid-template-rows: 1fr;
-  opacity: 1;
-}
-@media (hover: none) {
-  .project-more {
-    grid-template-rows: 1fr;
-    opacity: 1;
-  }
-}
-
-/* Card → case-study page morph (React <ViewTransition share="morph">) */
+/* Project title → case-study header morph (React <ViewTransition share="morph">) */
 ::view-transition-group(.morph) {
   animation-duration: 450ms;
   animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
@@ -232,7 +209,6 @@ body {
     transform: none;
     animation: none;
   }
-  .project-more,
   .link-arrow,
   .nav-bar {
     transition: none;

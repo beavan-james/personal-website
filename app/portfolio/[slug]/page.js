@@ -31,7 +31,7 @@ export default async function CaseStudyPage({ params }) {
         </Link>
 
         <ViewTransition name={`project-${project.slug}`} share="morph" default="none">
-          <header className="mt-8 rounded-2xl border border-line bg-coal/80 p-6 md:p-10">
+          <header className="mt-8 border-b border-line pb-10">
             <p className="text-sm text-accent-dim">{project.category}</p>
             <h1 className="font-display mt-2 text-5xl leading-tight text-paper md:text-6xl">
               {project.title}
@@ -49,9 +49,9 @@ export default async function CaseStudyPage({ params }) {
 
         <section className="mt-16">
           <h2 className="font-display text-3xl text-paper">Pipeline</h2>
-          <ol className="mt-6 grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-4">
+          <ol className="mt-6 grid gap-x-8 gap-y-6 md:grid-cols-4">
             {project.pipeline.map((s, i) => (
-              <li key={s.step} className="bg-coal p-5">
+              <li key={s.step} className="border-t border-line pt-4">
                 <p className="font-mono text-xs text-accent-dim">
                   {String(i + 1).padStart(2, "0")}
                 </p>
@@ -82,9 +82,9 @@ export default async function CaseStudyPage({ params }) {
                 </ul>
               )}
               {s.table && (
-                <dl className="mt-6 divide-y divide-line overflow-hidden rounded-2xl border border-line bg-coal/80">
+                <dl className="mt-6 divide-y divide-line border-y border-line">
                   {s.table.rows.map(([label, value]) => (
-                    <div key={label} className="grid gap-1 px-5 py-4 sm:grid-cols-[minmax(0,14rem)_1fr] sm:gap-6">
+                    <div key={label} className="grid gap-1 py-4 sm:grid-cols-[minmax(0,14rem)_1fr] sm:gap-6">
                       <dt className="font-mono text-xs leading-6 text-muted">{label}</dt>
                       <dd className="text-paper">{value}</dd>
                     </div>

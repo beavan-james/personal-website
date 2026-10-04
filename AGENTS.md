@@ -18,11 +18,11 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Design System
 - **Palette (70 / 20 / 10):** tokens in `app/globals.css` (`@theme`). Use the Tailwind utilities (`bg-ink`, `text-silver`, `border-line`, …), not raw hex.
-  - Surfaces: `ink` `#0d100c` (page), `coal` `#121612` (cards), `line` `#262c21` (borders/dividers)
+  - Surfaces: `ink` `#0d100c` (page), `coal` `#121612` (raised surfaces), `line` `#262c21` (borders/dividers)
   - Text: `paper` `#efebe1`, `silver` `#c6c3b4`, `muted` `#8f917f`
   - Accent: `accent` `#d8c38c`, `accent-dim` `#c4ae76` (leopard-eye gold; use sparingly)
   - The backdrop scrim in `globals.css` uses `ink` as literal `rgb(13 16 12 / …)`; keep it in sync if `ink` changes.
-- **Surfaces:** cards are translucent `bg-coal/80` with `border border-line rounded-2xl` so the photo faintly shows through. Exception: tiles inside a `gap-px bg-line` grid (case-study pipeline) stay opaque `bg-coal`, or the line colour bleeds through.
+- **No cards.** Group content with hairline rules (`border-t` / `divide-y divide-line`) and spacing, not boxed panels; the Portfolio list and case study follow this. The only boxed element is the Contact page's link list (`bg-coal/80`, translucent so the photo shows through).
 - **Typography** (loaded via `next/font/google` in `app/layout.js`):
   - Fraunces, display (`--font-fraunces`, `opsz` + `SOFT` axes, upright only). Apply with `.font-display`.
   - Ubuntu, body (`--font-body`, 300–700, upright only).
@@ -31,12 +31,11 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - **Motifs / utilities** (all in `app/globals.css`; extend these before inventing new visual language):
   - `.site-backdrop` + `.site-rain`: fixed, mirrored snow-leopard photo (`public/snow-leopard.jpg`) at `brightness(0.8)`, a left/bottom scrim, and a rain canvas. `components/SiteBackdrop.js` drives `--backdrop-progress` (0 → 1 over the first viewport) to darken and blur it on scroll.
   - `.text-link`: text link with a gold underline that grows on hover.
-  - `.link-arrow` (`-left`, `-down`, `-out`): arrows nudge on hover of `.text-link`, `.project-card`, or `.arrow-host`.
+  - `.link-arrow` (`-left`, `-down`, `-out`): arrows nudge on hover of `.text-link` or `.arrow-host`.
   - `.nav-bar` / `-active` / `-hover`: sliding gold underline in `Nav.js`.
-  - `.project-card` + `.project-more`: hovering a portfolio card unfolds its metrics and pipeline preview (always open on touch).
   - `.hero-stage-1…4`: staged hero entrance.
   - `.reveal` / `.is-visible`: reveal on scroll, toggled by `components/Reveal.js` (IntersectionObserver).
-  - React `<ViewTransition name="project-<slug>" share="morph">` morphs a portfolio card into its case-study header.
+  - React `<ViewTransition name="project-<slug>" share="morph">` morphs a Portfolio entry's title into its case-study header.
   - Respect `prefers-reduced-motion`: every motion utility has an override in the reduced-motion block. Add one for anything new.
 - **Layout:** `max-w-5xl px-5` content column; one composition per viewport; the name is the hero-level signal. Avoid generic card grids, purple gradients, and flat single-color heroes.
 
