@@ -12,14 +12,6 @@ export default function About() {
               {paragraph}
             </p>
           ))}
-          <dl className="mt-8 space-y-2 text-sm">
-            {site.skillGroups.map(({ label, items }) => (
-              <div key={label} className="grid grid-cols-[6rem_1fr] gap-4">
-                <dt className="text-muted">{label}</dt>
-                <dd className="text-paper">{items.join(" · ")}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
       </div>
     </section>

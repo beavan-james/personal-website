@@ -2,16 +2,17 @@ import Link from "next/link";
 import { site } from "../lib/site";
 
 export default function Hero() {
+  const details = [
+    ...site.heroDetails,
+    ...site.skillGroups.map(({ label, items }) => ({ label, value: items.join(" · ") })),
+  ];
   return (
     <section>
       <div className="mx-auto flex min-h-[85svh] max-w-5xl flex-col justify-center px-5 py-16">
         <h1 className="hero-stage hero-stage-1 font-display max-w-3xl text-6xl leading-[1.02] text-paper text-balance md:text-8xl">
           {site.name}
         </h1>
-        <p className="hero-stage hero-stage-2 mt-6 max-w-xl text-lg leading-relaxed text-silver">
-          {site.blurb}
-        </p>
-        <div className="hero-stage hero-stage-3 mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm font-medium text-silver">
+        <div className="hero-stage hero-stage-2 mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm font-medium text-silver">
           <Link href="/portfolio" className="text-link">
             See the work <span className="link-arrow">→</span>
           </Link>
@@ -19,9 +20,27 @@ export default function Hero() {
             Get in touch <span className="link-arrow">→</span>
           </Link>
         </div>
-        <p className="hero-stage hero-stage-4 mt-10 font-mono text-xs uppercase tracking-widest text-muted">
-          <span className="text-accent">{site.role}</span> · {site.heroTags}
-        </p>
+        {/* Native <details>: works on touch and keyboard with no client JS */}
+        <details className="hero-details hero-stage hero-stage-3 mt-10 max-w-2xl">
+          <summary className="inline-flex cursor-pointer list-none items-center gap-3 font-mono text-xs uppercase tracking-widest text-accent marker:hidden [&::-webkit-details-marker]:hidden">
+            {site.role}
+            <span aria-hidden className="hero-details-toggle text-muted">+</span>
+          </summary>
+          <dl className="hero-details-body mt-5 space-y-2 border-l border-line pl-4 text-sm">
+            {details.map(({ label, value }) => (
+              <div key={label} className="grid grid-cols-[7.5rem_1fr] gap-4">
+                <dt className="font-mono text-xs uppercase leading-5 tracking-widest text-muted">{label}</dt>
+                <dd className="space-y-1 text-silver">
+                  {[].concat(value).map((line) => (
+                    <span key={line} className="block">
+                      {line}
+                    </span>
+                  ))}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </details>
       </div>
     </section>
   );

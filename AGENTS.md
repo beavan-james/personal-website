@@ -33,14 +33,14 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - `.text-link`: text link with a gold underline that grows on hover.
   - `.link-arrow` (`-left`, `-down`, `-out`): arrows nudge on hover of `.text-link` or `.arrow-host`.
   - `.nav-bar` / `-active` / `-hover`: sliding gold underline in `Nav.js`.
-  - `.hero-stage-1…4`: staged hero entrance.
+  - `.hero-stage-1…3`: staged hero entrance.
   - `.reveal` / `.is-visible`: reveal on scroll, toggled by `components/Reveal.js` (IntersectionObserver).
   - React `<ViewTransition name="project-<slug>" share="morph">` morphs a Portfolio entry's title into its case-study header.
   - Respect `prefers-reduced-motion`: every motion utility has an override in the reduced-motion block. Add one for anything new.
 - **Layout:** `max-w-5xl px-5` content column; one composition per viewport; the name is the hero-level signal. Avoid generic card grids, purple gradients, and flat single-color heroes.
 
 ## Content Model (`lib/site.js`)
-- `site`: name, role, blurb, email, socials, `skillGroups`, `heroTags`, `about { title, blurb, paragraphs }`, section intros.
+- `site`: name, role, email, socials, `heroDetails` and `skillGroups` (both shown in the hero's click-to-expand `<details>` under the role line), `about { title, paragraphs }`, section intros.
 - `navLinks`: About (`/`), Portfolio, Experience, Contact.
 - `projects[]`: each renders a card on `/portfolio` and a statically generated case study at `/portfolio/<slug>`. Shape: `slug`, `title`, `category`, `description` (card copy; keep it short), `tags`, `repo`, optional `live`, `metrics` (3, shown in a 3-column grid), `pipeline` (4 steps, 4-column grid), and `sections[]` of `{ heading, body, bullets?, table? }`, where `body` is a string or array of paragraphs and `table` is `{ rows: [[label, value], ...] }`.
 - `experienceItems[]`: `period`, `title`, `place`, `detail`, `bullets` (rendered by `Timeline.js`).

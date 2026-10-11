@@ -173,15 +173,47 @@ body {
 .hero-stage-3 {
   animation-delay: 160ms;
 }
-.hero-stage-4 {
-  animation-delay: 240ms;
-}
 
 @keyframes hero-in {
   to {
     opacity: 1;
     transform: none;
   }
+}
+
+/* Hero role details: the <details> body eases open/closed instead of
+   snapping. ::details-content + interpolate-size animate to height:auto
+   where supported (Chromium); elsewhere it opens instantly, still usable. */
+.hero-details {
+  interpolate-size: allow-keywords;
+}
+.hero-details::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition:
+    block-size 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    content-visibility 0.5s allow-discrete;
+}
+.hero-details[open]::details-content {
+  block-size: auto;
+}
+.hero-details-body {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    opacity 0.35s ease,
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hero-details[open] .hero-details-body {
+  opacity: 1;
+  transform: none;
+  transition-delay: 0.06s;
+}
+.hero-details-toggle {
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hero-details[open] .hero-details-toggle {
+  transform: rotate(45deg);
 }
 
 /* Reveal on scroll (progressive enhancement, no JS lib) */
@@ -198,6 +230,11 @@ body {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .hero-details::details-content,
+  .hero-details-body,
+  .hero-details-toggle {
+    transition: none;
   }
   .reveal {
     opacity: 1;
