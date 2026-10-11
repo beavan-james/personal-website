@@ -17,8 +17,8 @@
   --color-accent-dim: #c4ae76;
 
   --font-display: var(--font-fraunces), ui-serif, Georgia, ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-mono), ui-monospace, monospace;
+  --font-sans: var(--font-plex-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
 }
 
 html {
@@ -210,10 +210,57 @@ body {
   transition-delay: 0.06s;
 }
 .hero-details-toggle {
+  transition:
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+/* Only the glyph turns (+ to x); the square box stays square */
+.hero-details-plus {
+  display: block;
   transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.hero-details[open] .hero-details-toggle {
+.hero-details[open] .hero-details-plus {
   transform: rotate(45deg);
+}
+/* Make the role line read as a control: gold underline + gold toggle box */
+.hero-details-label {
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 6px;
+  transition: text-decoration-color 0.25s ease;
+}
+.hero-details-summary:is(:hover, :focus-visible) .hero-details-label {
+  text-decoration-color: rgb(216 195 140 / 0.5);
+}
+.hero-details-summary:is(:hover, :focus-visible) .hero-details-toggle,
+.hero-details[open] .hero-details-toggle {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* Hover "ghost": while closed, hovering the role line lets the first row
+   show through faintly, fading out downward, to hint there's more. The
+   closed element reserves the ghost's height as margin so the vertically
+   centred hero doesn't jump when the ghost appears. Only where
+   ::details-content can be styled; elsewhere the plain toggle remains. */
+@supports selector(::details-content) {
+  .hero-details {
+    margin-bottom: 3rem;
+    transition: margin-bottom 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .hero-details[open],
+  .hero-details:has(> summary:is(:hover, :focus-visible)) {
+    margin-bottom: 0;
+  }
+  .hero-details:not([open]):has(> summary:is(:hover, :focus-visible))::details-content {
+    content-visibility: visible;
+    block-size: 3rem;
+  }
+  .hero-details:not([open]):has(> summary:is(:hover, :focus-visible)) .hero-details-body {
+    opacity: 0.35;
+    transform: none;
+    mask-image: linear-gradient(to bottom, #000 10%, transparent 100%);
+  }
 }
 
 /* Reveal on scroll (progressive enhancement, no JS lib) */
@@ -231,9 +278,12 @@ body {
   html {
     scroll-behavior: auto;
   }
+  .hero-details,
   .hero-details::details-content,
   .hero-details-body,
-  .hero-details-toggle {
+  .hero-details-toggle,
+  .hero-details-plus,
+  .hero-details-label {
     transition: none;
   }
   .reveal {

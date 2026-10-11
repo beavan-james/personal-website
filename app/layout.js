@@ -1,20 +1,22 @@
-import { Fraunces, Ubuntu, Ubuntu_Mono } from "next/font/google";
+import { Fraunces, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import Reveal from "../components/Reveal";
 import SiteBackdrop from "../components/SiteBackdrop";
 
-const body = Ubuntu({
-  variable: "--font-body",
+// Fraunces for the name and headings; the IBM Plex superfamily for the
+// rest: Plex Sans for body copy, Plex Mono for labels and metadata.
+const sans = IBM_Plex_Sans({
+  variable: "--font-plex-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
+  weight: ["400", "500", "600"],
 });
 
-const mono = Ubuntu_Mono({
-  variable: "--font-mono",
+const mono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400", "500"],
 });
 
 const display = Fraunces({
@@ -33,7 +35,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${body.variable} ${mono.variable} ${display.variable} h-full scroll-smooth`}
+      className={`${sans.variable} ${mono.variable} ${display.variable} h-full scroll-smooth`}
     >
       <body
         className={`min-h-full flex flex-col bg-ink text-paper antialiased`}

@@ -8,7 +8,7 @@ export default function Hero() {
   ];
   return (
     <section>
-      <div className="mx-auto flex min-h-[85svh] max-w-5xl flex-col justify-center px-5 py-16">
+      <div className="mx-auto flex min-h-[60svh] max-w-5xl flex-col justify-center px-5 py-16">
         <h1 className="hero-stage hero-stage-1 font-display max-w-3xl text-6xl leading-[1.02] text-paper text-balance md:text-8xl">
           {site.name}
         </h1>
@@ -22,14 +22,16 @@ export default function Hero() {
         </div>
         {/* Native <details>: works on touch and keyboard with no client JS */}
         <details className="hero-details hero-stage hero-stage-3 mt-10 max-w-2xl">
-          <summary className="inline-flex cursor-pointer list-none items-center gap-3 font-mono text-xs uppercase tracking-widest text-accent marker:hidden [&::-webkit-details-marker]:hidden">
-            {site.role}
-            <span aria-hidden className="hero-details-toggle text-muted">+</span>
+          <summary className="hero-details-summary inline-flex cursor-pointer list-none items-center gap-3 font-mono text-xs uppercase tracking-wider text-accent marker:hidden sm:tracking-widest [&::-webkit-details-marker]:hidden">
+            <span className="hero-details-label">{site.role}</span>
+            <span aria-hidden className="hero-details-toggle grid h-5 w-5 place-items-center border border-line text-sm leading-none text-silver">
+              <span className="hero-details-plus">+</span>
+            </span>
           </summary>
           <dl className="hero-details-body mt-5 space-y-2 border-l border-line pl-4 text-sm">
             {details.map(({ label, value }) => (
-              <div key={label} className="grid grid-cols-[7.5rem_1fr] gap-4">
-                <dt className="font-mono text-xs uppercase leading-5 tracking-widest text-muted">{label}</dt>
+              <div key={label} className="grid grid-cols-[7.5rem_1fr] gap-4 sm:grid-cols-[12.5rem_1fr]">
+                <dt className="font-mono text-xs uppercase leading-5 tracking-wide text-muted sm:tracking-widest">{label}</dt>
                 <dd className="space-y-1 text-silver">
                   {[].concat(value).map((line) => (
                     <span key={line} className="block">
