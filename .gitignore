@@ -45,3 +45,6 @@ components/JellyfishBackdrop.js
 
 # server-side deploy log (scripts/auto-deploy.sh)
 auto-deploy.log
+
+# local Claude Code preview config
+.claude/
