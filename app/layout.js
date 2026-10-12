@@ -26,6 +26,8 @@ const display = Fraunces({
 });
 
 export const metadata = {
+  // Absolute base for the generated og:image / twitter:image URLs
+  metadataBase: new URL("https://portfolio.stockidence.com"),
   title: "James Beavan | Data Engineering",
   description:
     "Georgia Tech Math junior building data pipelines and ranking models.",
