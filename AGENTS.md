@@ -41,8 +41,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - **Layout:** `max-w-5xl px-5` content column; one composition per viewport; the name is the hero-level signal. Avoid generic card grids, purple gradients, and flat single-color heroes.
 
 ## Content Model (`lib/site.js`)
-- `site`: name, role, email, socials, `heroDetails` and `skillGroups` (both shown in the hero's click-to-expand `<details>` under the role line), `about { title, paragraphs }`, section intros.
-- `navLinks`: About (`/`), Portfolio, Experience, Contact.
+- `site`: name, role, email, socials, `heroDetails` (Building / Reading / Learning rows in the hero's click-to-expand `<details>` under the role line; a value may be an array for one item per line), `about { title, paragraphs }`, section intros.
+- `navLinks`: Home (`/`), Portfolio, Experience, Contact.
 - `projects[]`: each renders a card on `/portfolio` and a statically generated case study at `/portfolio/<slug>`. Shape: `slug`, `title`, `category`, `description` (card copy; keep it short), `tags`, `repo`, optional `live`, `metrics` (3, shown in a 3-column grid), `pipeline` (4 steps, 4-column grid), and `sections[]` of `{ heading, body, bullets?, table? }`, where `body` is a string or array of paragraphs and `table` is `{ rows: [[label, value], ...] }`.
 - `experienceItems[]`: `period`, `title`, `place`, `detail`, `bullets` (rendered by `Timeline.js`).
 - `SectionHeading` takes `title` and an optional `blurb`.
@@ -73,7 +73,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Key Paths
 - `app/layout.js`: fonts, metadata, and site chrome (`SiteBackdrop`, `Nav`, `Reveal`, `Footer`)
-- `app/page.js`: home (Hero → About → "See what I've built" link band)
+- `app/page.js`: home (Hero → About)
 - `app/portfolio/page.js` and `app/portfolio/[slug]/page.js`: project list and case-study pages
 - `app/experience/page.js`: timeline plus resume download (`public/MyResume.pdf`)
 - `app/contact/page.js`: email and social links

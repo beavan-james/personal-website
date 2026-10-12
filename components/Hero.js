@@ -2,10 +2,6 @@ import Link from "next/link";
 import { site } from "../lib/site";
 
 export default function Hero() {
-  const details = [
-    ...site.heroDetails,
-    ...site.skillGroups.map(({ label, items }) => ({ label, value: items.join(" · ") })),
-  ];
   return (
     <section>
       <div className="mx-auto flex min-h-[60svh] max-w-5xl flex-col justify-center px-5 py-16">
@@ -29,8 +25,8 @@ export default function Hero() {
             </span>
           </summary>
           <dl className="hero-details-body mt-5 space-y-2 border-l border-line pl-4 text-sm">
-            {details.map(({ label, value }) => (
-              <div key={label} className="grid grid-cols-[7.5rem_1fr] gap-4 sm:grid-cols-[12.5rem_1fr]">
+            {site.heroDetails.map(({ label, value }) => (
+              <div key={label} className="grid grid-cols-[7.5rem_1fr] gap-4">
                 <dt className="font-mono text-xs uppercase leading-5 tracking-wide text-muted sm:tracking-widest">{label}</dt>
                 <dd className="space-y-1 text-silver">
                   {[].concat(value).map((line) => (
