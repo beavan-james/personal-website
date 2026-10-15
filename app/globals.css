@@ -85,12 +85,15 @@ body {
       linear-gradient(rgb(13 16 12 / 0.7), rgb(13 16 12 / 0.7));
   }
 }
+/* Screen blend so the home page's light shafts add light to the photo, as
+   real light would, instead of laying a flat wash over it */
 .site-rain {
   position: absolute;
   inset: 0;
   z-index: 1;
   width: 100%;
   height: 100%;
+  mix-blend-mode: screen;
 }
 
 /* Plain text link with a gold underline that grows on hover */
@@ -178,6 +181,98 @@ body {
   to {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* Glint: a band of warm light crosses text once, just after the hero
+   entrance, and again on hover. Needs data-text with the same text. A copy
+   of the text sits on top and only a moving band of it is painted: gold with
+   a paper-white core (::after), plus a blurred copy (::before) that spills
+   light around the letters. The name is already near-white, so the shift to
+   gold and the bloom are what read as light. */
+.glint {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
+.glint::before,
+.glint::after {
+  content: attr(data-text);
+  /* Empty alt text so screen readers don't read the copy */
+  content: attr(data-text) / "";
+  position: absolute;
+  inset: 0;
+  color: transparent;
+  pointer-events: none;
+  background-image: linear-gradient(100deg, transparent 43%, rgb(216 195 140 / 0.9) 47.5%, var(--color-paper) 50%, rgb(216 195 140 / 0.9) 52.5%, transparent 57%);
+  background-size: 300% 100%;
+  background-repeat: no-repeat;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  /* backwards, not both: once done, the resting position takes over so
+     the hover transition below can run */
+  animation: glint 1.4s cubic-bezier(0.45, 0, 0.25, 1) 0.75s backwards;
+}
+.glint::before {
+  opacity: 0.95;
+  filter: blur(0.17em);
+}
+/* Hover replays it as a transition; leaving snaps the band back off the text */
+.glint:hover::before,
+.glint:hover::after {
+  background-position: 0% 0;
+  transition: background-position 1.4s cubic-bezier(0.45, 0, 0.25, 1);
+}
+@keyframes glint {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: 0% 0;
+  }
+}
+
+/* The same light running along a section's top border, just after the
+   name's glint. overflow-x: clip keeps the travelling band from widening
+   the page without clipping its glow above the line. */
+.glint-rule {
+  position: relative;
+  overflow-x: clip;
+}
+.glint-rule::before,
+.glint-rule::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  width: 26%;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateX(-100%);
+  animation: rule-glint 1.4s cubic-bezier(0.45, 0, 0.25, 1) 1.3s backwards;
+}
+.glint-rule::after {
+  top: -1px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-accent) 30%, var(--color-paper) 50%, var(--color-accent) 70%, transparent);
+}
+.glint-rule::before {
+  top: -8px;
+  height: 15px;
+  background: radial-gradient(50% 50% at 50% 50%, rgb(216 195 140 / 0.85), transparent);
+}
+@keyframes rule-glint {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  12%,
+  88% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(390%);
   }
 }
 
@@ -295,6 +390,15 @@ body {
     opacity: 1;
     transform: none;
     animation: none;
+  }
+  .glint::before,
+  .glint::after,
+  .glint:hover::before,
+  .glint:hover::after,
+  .glint-rule::before,
+  .glint-rule::after {
+    animation: none;
+    transition: none;
   }
   .link-arrow,
   .nav-bar {

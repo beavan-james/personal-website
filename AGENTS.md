@@ -30,8 +30,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - Plex Sans and Plex Mono are one superfamily; don't add other typefaces.
   - Do not set a global `line-height` on `body`: unlayered CSS overrides Tailwind's `leading-*` utilities. Set leading per element.
 - **Motifs / utilities** (all in `app/globals.css`; extend these before inventing new visual language):
-  - `.site-backdrop` + `.site-rain`: fixed, mirrored snow-leopard photo (`public/snow-leopard.jpg`) at `brightness(0.8)`, a left/bottom scrim, and a rain canvas. `components/SiteBackdrop.js` drives `--backdrop-progress` (0 → 1 over the first viewport) to darken and blur it on scroll.
+  - `.site-backdrop` + `.site-rain`: fixed, mirrored snow-leopard photo (`public/snow-leopard.jpg`) at `brightness(0.8)`, a left/bottom scrim, and a rain canvas. `components/SiteBackdrop.js` drives `--backdrop-progress` (0 → 1 over the first viewport) to darken and blur it on scroll. On the home page only, the same canvas (screen-blended) draws soft light shafts falling from the canopy gap at top right; each slowly brightens and dims on its own period, drops falling through them light up, and they fade out with scroll progress and when leaving `/`.
   - `.text-link`: text link with a gold underline that grows on hover.
+  - `.glint` (needs `data-text` holding the same text): a band of warm light sweeps the hero name once after the entrance and again on hover. `.glint-rule` runs the same light along a section's top border (About's).
   - `.link-arrow` (`-left`, `-down`, `-out`): arrows nudge on hover of `.text-link` or `.arrow-host`.
   - `.nav-bar` / `-active` / `-hover`: sliding gold underline in `Nav.js`.
   - `.hero-stage-1…3`: staged hero entrance.

@@ -6,7 +6,9 @@ export default function Hero() {
     <section>
       <div className="mx-auto flex min-h-[60svh] max-w-5xl flex-col justify-center px-5 py-16">
         <h1 className="hero-stage hero-stage-1 font-display max-w-3xl text-6xl leading-[1.02] text-paper text-balance md:text-8xl">
-          {site.name}
+          <span className="glint" data-text={site.name}>
+            {site.name}
+          </span>
         </h1>
         <div className="hero-stage hero-stage-2 mt-8 flex flex-wrap gap-x-8 gap-y-3 text-sm font-medium text-silver">
           <Link href="/portfolio" className="text-link">
