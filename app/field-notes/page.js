@@ -1,5 +1,4 @@
 import AlbumShelf from "../../components/AlbumShelf";
-import Doodle from "../../components/Doodle";
 import ReadingList from "../../components/ReadingList";
 import { fieldNotes } from "../../lib/site";
 
@@ -8,12 +7,9 @@ export const metadata = {
   description: "What James Beavan has been listening to, reading, climbing, and cooking.",
 };
 
-function Label({ icon, children }) {
+function Label({ children }) {
   return (
-    <h2 className="reveal flex items-center gap-3 font-display font-soft text-3xl leading-tight text-paper md:text-4xl">
-      <span className="text-accent-dim">
-        <Doodle name={icon} className="h-7 w-7 md:h-8 md:w-8" />
-      </span>
+    <h2 className="reveal font-display font-soft text-3xl leading-tight text-paper md:text-4xl">
       {children}
     </h2>
   );
@@ -36,7 +32,7 @@ export default function FieldNotesPage() {
 
       <section className="mt-20">
         <div className="mx-auto mb-6 max-w-5xl px-5">
-          <Label icon="record">On rotation</Label>
+          <Label>On rotation</Label>
         </div>
         <div className="space-y-12">
           {fieldNotes.listening.map(({ month, albums }) => (
@@ -47,20 +43,17 @@ export default function FieldNotesPage() {
 
       <section className="mx-auto mt-20 max-w-5xl px-5">
         <div className="mb-8">
-          <Label icon="book">Notes &amp; takeaways</Label>
+          <Label>Notes &amp; takeaways</Label>
         </div>
         <ReadingList />
       </section>
 
       <section className="mx-auto mt-20 max-w-5xl px-5">
-        <h2 className="reveal font-display font-soft text-3xl leading-tight text-paper md:text-4xl">
-          Elsewhere
-        </h2>
+        <Label>Elsewhere</Label>
         <div className="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2">
-          {fieldNotes.elsewhere.map(({ label, icon, lines }) => (
+          {fieldNotes.elsewhere.map(({ label, lines }) => (
             <div key={label} className="reveal border-t border-line pt-5">
-              <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-accent-dim">
-                <Doodle name={icon} className="h-4 w-4" />
+              <p className="font-mono text-xs uppercase tracking-widest text-accent-dim">
                 {label}
               </p>
               <ul className="mt-3 space-y-1.5 text-silver">

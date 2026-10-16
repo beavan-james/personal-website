@@ -1,6 +1,9 @@
-// One month of albums as a horizontally scrolling shelf. Each sleeve opens
-// its tracklist in a native popover (popovertarget), so there's no client
-// JS: light dismiss, Esc to close, and focus return come from the browser.
+import DragScroll from "./DragScroll";
+
+// One month of albums as a horizontally scrolling (and mouse-draggable)
+// shelf. Each sleeve opens its tracklist in a native popover
+// (popovertarget): light dismiss, Esc to close, and focus return come from
+// the browser.
 
 // Placeholder sleeves for albums without a `cover`, cycled through the palette
 const blankSleeves = [
@@ -46,29 +49,26 @@ export default function AlbumShelf({ month, albums }) {
         {month} <span className="text-line">/</span> {albums.length} albums
       </p>
 
-      <ul
+      <DragScroll
         className="shelf mt-4 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-6 pt-4"
         aria-label={`Albums for ${month}`}
       >
         {albums.map((album, i) => (
-          <li key={album.title + album.artist} className="sleeve w-40 shrink-0 snap-start sm:w-48">
+          <li key={album.title + album.artist} className="w-40 shrink-0 snap-start sm:w-48">
             <button
               type="button"
               popoverTarget={`album-${monthId}-${i}`}
-              className="sleeve-button block w-full cursor-pointer text-left"
+              className="sleeve-button block w-full text-left"
             >
-              <span className="relative block">
-                <span aria-hidden className="sleeve-record" />
-                <Cover album={album} index={i} className="sleeve-art relative block w-full shadow-lg shadow-black/40" />
-              </span>
-              <span className="mt-3 block truncate text-sm text-paper">{album.title}</span>
+              <Cover album={album} index={i} className="sleeve-art block w-full shadow-lg shadow-black/40" />
+              <span className="sleeve-title mt-2 block truncate text-sm text-paper">{album.title}</span>
               <span className="block truncate font-mono text-[11px] uppercase tracking-widest text-muted">
                 {album.artist}
               </span>
             </button>
           </li>
         ))}
-      </ul>
+      </DragScroll>
 
       {albums.map((album, i) => (
         <div

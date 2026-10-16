@@ -289,23 +289,32 @@ body {
   scrollbar-width: thin;
   scrollbar-color: var(--color-line) transparent;
 }
-/* Sleeves sit slightly askew and straighten up on hover/focus, sliding the
-   record out from behind the cover */
-.sleeve {
-  --tilt: -2deg;
-  position: relative;
-  transform: rotate(var(--tilt));
-  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+/* Mouse users can grab and drag the shelf (components/DragScroll.js).
+   Snapping is paused mid-drag so it doesn't fight the pointer. */
+.shelf {
+  cursor: grab;
 }
-.sleeve:nth-child(3n + 2) {
-  --tilt: 1.5deg;
+.shelf.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
 }
-.sleeve:nth-child(3n) {
-  --tilt: -0.75deg;
+.shelf img {
+  -webkit-user-drag: none;
+  user-select: none;
 }
-.sleeve:has(.sleeve-button:is(:hover, :focus-visible)) {
-  z-index: 1;
-  transform: rotate(0deg) translateY(-6px);
+/* Hovering or focusing a sleeve makes its title glow gold. The padding
+   (offset by negative margin) keeps `truncate` from clipping the glow. */
+.sleeve-title {
+  padding: 0.25rem 0.5rem;
+  margin-inline: -0.5rem;
+  transition:
+    color 0.3s ease,
+    text-shadow 0.3s ease;
+}
+.sleeve-button:is(:hover, :focus-visible) .sleeve-title {
+  color: var(--color-accent);
+  text-shadow: 0 0 10px rgb(216 195 140 / 0.55);
 }
 .sleeve-button:focus-visible {
   outline: none;
@@ -313,19 +322,6 @@ body {
 .sleeve-button:focus-visible .sleeve-art {
   outline: 2px solid var(--color-accent);
   outline-offset: 3px;
-}
-.sleeve-record {
-  position: absolute;
-  inset: 4%;
-  border-radius: 9999px;
-  background:
-    radial-gradient(circle, var(--color-accent-dim) 0 14%, var(--color-ink) 15% 17%, transparent 18%),
-    repeating-radial-gradient(circle, #0a0c09 0 2px, #2a3025 2px 3px);
-  box-shadow: 0 0 0 1px var(--color-line);
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.sleeve:has(.sleeve-button:is(:hover, :focus-visible)) .sleeve-record {
-  transform: translateX(45%) rotate(40deg);
 }
 
 /* Tracklist popover: fades and lifts in; ::backdrop dims the page */
@@ -370,8 +366,7 @@ body {
   html {
     scroll-behavior: auto;
   }
-  .sleeve,
-  .sleeve-record,
+  .sleeve-title,
   .album-pop,
   .highlight,
   .highlight-hover {
