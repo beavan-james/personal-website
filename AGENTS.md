@@ -37,7 +37,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - `.hero-stage-1…3`: staged hero entrance.
   - `.reveal` / `.is-visible`: reveal on scroll, toggled by `components/Reveal.js` (IntersectionObserver).
   - React `<ViewTransition name="project-<slug>" share="morph">` morphs a Portfolio entry's title into its case-study header.
-  - Field Notes (`/field-notes`) is the deliberately playful page: same palette and type, looser handling. `.font-soft` (Fraunces at `SOFT` 100, paired with `.font-display`), `.shelf` (full-bleed horizontal scroller aligned to the content column), `.sleeve-title` (album title glows gold on hover/focus), `.is-dragging` (set by `DragScroll` while grabbing the shelf), `.album-pop` (native `popover` tracklist, no client JS), `.highlight` / `.highlight-hover` (gold highlighter swipe). Keep this looseness on Field Notes.
+  - Field Notes (`/field-notes`) is the deliberately playful page: same palette and type, looser handling. `.font-soft` (Fraunces at `SOFT` 100, paired with `.font-display`), `.marquee` / `.marquee-track` / `.marquee-copy` (full-bleed album loop that pauses on hover; `AlbumShelf` repeats the set and sets `--marquee-duration` / `--marquee-shift`; reduced motion turns it into a plain scroller), `.sleeve-title` (album title glows white on hover/focus), `.album-pop` (native `popover` tracklist, no client JS), `.highlight` / `.highlight-hover` (gold highlighter swipe). Keep this looseness on Field Notes.
   - Respect `prefers-reduced-motion`: every motion utility has an override in the reduced-motion block. Add one for anything new.
 - **Layout:** `max-w-5xl px-5` content column; one composition per viewport; the name is the hero-level signal. Avoid generic card grids, purple gradients, and flat single-color heroes.
 
@@ -59,10 +59,10 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Code Style & Conventions
 - **Language:** JavaScript (`.js` components). `jsconfig.json` defines an `@/*` alias, but existing files use relative imports; match the file you're editing.
-- **Components:** Functional components. Only `Nav`, `Reveal`, `SiteBackdrop`, and `DragScroll` (mouse drag-to-scroll for the album shelf) are client components (`"use client"`); keep everything else on the server.
+- **Components:** Functional components. Only `Nav`, `Reveal`, and `SiteBackdrop` are client components (`"use client"`); keep everything else on the server.
 - **Images:** `next.config.mjs` uses `output: "export"`, so there is no image optimizer; use plain `<img>` (see `AlbumShelf.js`).
 - **Content:** Do not hardcode person-specific copy inside components when it belongs in `lib/site.js`.
-- **State Management:** No global client store. Local UI state (`useState` / effects) only where interaction requires it (mobile nav, reveal-on-scroll, backdrop, shelf dragging).
+- **State Management:** No global client store. Local UI state (`useState` / effects) only where interaction requires it (mobile nav, reveal-on-scroll, backdrop).
 
 ## Testing Guidelines
 - **Command:** Not configured yet (`package.json` has no test script). Verify with `npm run lint` and `npm run build`.

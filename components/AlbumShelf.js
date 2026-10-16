@@ -1,9 +1,6 @@
-import DragScroll from "./DragScroll";
-
-// One month of albums as a horizontally scrolling (and mouse-draggable)
-// shelf. Each sleeve opens its tracklist in a native popover
-// (popovertarget): light dismiss, Esc to close, and focus return come from
-// the browser.
+// One month of albums as a looping marquee that pauses while you hover it.
+// Each sleeve opens its tracklist in a native popover (popovertarget):
+// light dismiss, Esc to close, and focus return come from the browser.
 
 // Placeholder sleeves for albums without a `cover`, cycled through the palette
 const blankSleeves = [
@@ -42,6 +39,9 @@ function Cover({ album, index, className, titleClass = "text-2xl" }) {
 
 export default function AlbumShelf({ month, albums }) {
   const monthId = toId(month);
+  // Enough copies that one set plus the widest screen (~2560px) is always
+  // covered; each sleeve is about 216px wide with its spacing
+  const copies = Math.max(2, 1 + Math.ceil(2560 / (albums.length * 216)));
 
   return (
     <div className="reveal">
@@ -49,26 +49,43 @@ export default function AlbumShelf({ month, albums }) {
         {month} <span className="text-line">/</span> {albums.length} albums
       </p>
 
-      <DragScroll
-        className="shelf mt-4 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-6 pt-4"
-        aria-label={`Albums for ${month}`}
-      >
-        {albums.map((album, i) => (
-          <li key={album.title + album.artist} className="w-40 shrink-0 snap-start sm:w-48">
-            <button
-              type="button"
-              popoverTarget={`album-${monthId}-${i}`}
-              className="sleeve-button block w-full text-left"
+      {/* The set of albums repeats so the loop never shows a gap: the track
+          slides left by exactly one set, then starts over */}
+      <div className="marquee mt-4 overflow-hidden pb-6 pt-4">
+        <div
+          className="marquee-track flex w-max"
+          style={{
+            "--marquee-duration": `${albums.length * 5}s`,
+            "--marquee-shift": `${-100 / copies}%`,
+          }}
+        >
+          {Array.from({ length: copies }, (_, copy) => (
+            <ul
+              key={copy}
+              className={`flex ${copy > 0 ? "marquee-copy" : ""}`}
+              aria-label={copy === 0 ? `Albums for ${month}` : undefined}
+              aria-hidden={copy > 0 || undefined}
             >
-              <Cover album={album} index={i} className="sleeve-art block w-full shadow-lg shadow-black/40" />
-              <span className="sleeve-title mt-2 block truncate text-sm text-paper">{album.title}</span>
-              <span className="block truncate font-mono text-[11px] uppercase tracking-widest text-muted">
-                {album.artist}
-              </span>
-            </button>
-          </li>
-        ))}
-      </DragScroll>
+              {albums.map((album, i) => (
+                <li key={album.title + album.artist} className="w-40 shrink-0 pr-6 sm:w-54">
+                  <button
+                    type="button"
+                    popoverTarget={`album-${monthId}-${i}`}
+                    tabIndex={copy > 0 ? -1 : undefined}
+                    className="sleeve-button block w-full cursor-pointer text-left"
+                  >
+                    <Cover album={album} index={i} className="sleeve-art block w-full shadow-lg shadow-black/40" />
+                    <span className="sleeve-title mt-2 block truncate text-sm text-paper">{album.title}</span>
+                    <span className="block truncate font-mono text-[11px] uppercase tracking-widest text-muted">
+                      {album.artist}
+                    </span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          ))}
+        </div>
+      </div>
 
       {albums.map((album, i) => (
         <div
