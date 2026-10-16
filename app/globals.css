@@ -274,9 +274,108 @@ body {
   transform: none;
 }
 
+/* Field Notes: the playful page. Same palette and type, looser handling. */
+/* Fraunces at its softest, for Field Notes headings */
+.font-soft {
+  font-variation-settings: "SOFT" 100;
+}
+
+/* Album shelf: full-bleed horizontal scroller whose first sleeve lines up
+   with the max-w-5xl column (64rem + px-5) */
+.shelf {
+  --shelf-inset: max(1.25rem, calc((100% - 64rem) / 2 + 1.25rem));
+  padding-inline: var(--shelf-inset);
+  scroll-padding-inline: var(--shelf-inset);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
+}
+/* Sleeves sit slightly askew and straighten up on hover/focus, sliding the
+   record out from behind the cover */
+.sleeve {
+  --tilt: -2deg;
+  position: relative;
+  transform: rotate(var(--tilt));
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.sleeve:nth-child(3n + 2) {
+  --tilt: 1.5deg;
+}
+.sleeve:nth-child(3n) {
+  --tilt: -0.75deg;
+}
+.sleeve:has(.sleeve-button:is(:hover, :focus-visible)) {
+  z-index: 1;
+  transform: rotate(0deg) translateY(-6px);
+}
+.sleeve-button:focus-visible {
+  outline: none;
+}
+.sleeve-button:focus-visible .sleeve-art {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+.sleeve-record {
+  position: absolute;
+  inset: 4%;
+  border-radius: 9999px;
+  background:
+    radial-gradient(circle, var(--color-accent-dim) 0 14%, var(--color-ink) 15% 17%, transparent 18%),
+    repeating-radial-gradient(circle, #0a0c09 0 2px, #2a3025 2px 3px);
+  box-shadow: 0 0 0 1px var(--color-line);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.sleeve:has(.sleeve-button:is(:hover, :focus-visible)) .sleeve-record {
+  transform: translateX(45%) rotate(40deg);
+}
+
+/* Tracklist popover: fades and lifts in; ::backdrop dims the page */
+.album-pop {
+  opacity: 0;
+  transform: translateY(10px) scale(0.98);
+  transition:
+    opacity 0.25s ease,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    overlay 0.35s allow-discrete,
+    display 0.35s allow-discrete;
+}
+.album-pop:popover-open {
+  opacity: 1;
+  transform: none;
+}
+@starting-style {
+  .album-pop:popover-open {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+}
+
+/* Gold highlighter swipe: .highlight paints in when its .reveal parent
+   scrolls into view; .highlight-hover paints in on hover/focus */
+.highlight,
+.highlight-hover {
+  background: linear-gradient(rgb(216 195 140 / 0.24), rgb(216 195 140 / 0.24)) 0 85% / 0% 40% no-repeat;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  transition: background-size 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.is-visible .highlight,
+.highlight-hover:is(:hover, :focus-visible) {
+  background-size: 100% 40%;
+}
+.highlight-hover:focus-visible {
+  outline: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .sleeve,
+  .sleeve-record,
+  .album-pop,
+  .highlight,
+  .highlight-hover {
+    transition: none;
   }
   .hero-details,
   .hero-details::details-content,
