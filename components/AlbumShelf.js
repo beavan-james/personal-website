@@ -81,9 +81,11 @@ export default function AlbumShelf({ month, albums }) {
           <div className="flex items-start gap-5 border-b border-line p-5">
             <Cover album={album} index={i} titleClass="text-base" className="w-24 shrink-0 sm:w-32" />
             <div className="min-w-0 flex-1">
-              <p className="font-mono text-[11px] uppercase tracking-widest text-accent-dim">
-                {album.year}
-              </p>
+              {album.year && (
+                <p className="font-mono text-[11px] uppercase tracking-widest text-accent-dim">
+                  {album.year}
+                </p>
+              )}
               <h3 className="font-display font-soft mt-1 text-2xl leading-tight text-paper sm:text-3xl">
                 {album.title}
               </h3>
@@ -109,8 +111,11 @@ export default function AlbumShelf({ month, albums }) {
               ×
             </button>
           </div>
+          {!album.tracks?.length && (
+            <p className="px-5 py-6 text-sm text-muted">Tracklist coming soon.</p>
+          )}
           <ol className="divide-y divide-line px-5 py-2">
-            {album.tracks.map((track, t) => (
+            {album.tracks?.map((track, t) => (
               <li key={`${t}-${track}`} className="flex gap-4 py-2.5 text-sm text-silver">
                 <span className="w-6 shrink-0 font-mono text-xs leading-5 text-muted">
                   {String(t + 1).padStart(2, "0")}

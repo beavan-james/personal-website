@@ -45,7 +45,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - `site`: name, role, email, socials, `heroDetails` (Building / Reading / Learning rows in the hero's click-to-expand `<details>` under the role line; a value may be an array for one item per line), `about { title, paragraphs }`, section intros.
 - `navLinks`: Home (`/`), Portfolio, Experience, Field Notes, Contact.
 - `projects[]`: each renders a card on `/portfolio` and a statically generated case study at `/portfolio/<slug>`. Shape: `slug`, `title`, `category`, `description` (card copy; keep it short), `tags`, `repo`, optional `live`, `metrics` (3, shown in a 3-column grid), `pipeline` (4 steps, 4-column grid), and `sections[]` of `{ heading, body, bullets?, table? }`, where `body` is a string or array of paragraphs and `table` is `{ rows: [[label, value], ...] }`.
-- `fieldNotes`: `intro`; `listening[]` of `{ month, albums[] }` (newest first, one shelf per month; album `{ title, artist, year, cover?, link?, tracks[] }`, `cover` a `public/` path or URL, typographic sleeve if absent); `reading[]` of `{ slug, type, title, author, source?, url?, date (YYYY-MM-DD), summary, takeaways[], quote?, sections[] }`, each statically generated at `/field-notes/<slug>` and listed newest first (helpers in `lib/fieldNotes.js`); `elsewhere[]` of `{ label, icon, lines[] }`.
+- `fieldNotes`: `intro`; `listening[]` of `{ month, albums[] }`, imported from `lib/listening.json` (newest first, one shelf per month; album `{ title, artist, itunesId?, year?, cover?, link?, tracks? }`). Add albums as `{ title, artist }` and run `npm run albums` (`scripts/fetch-albums.mjs`, iTunes Search API) to fill tracks, year, Apple Music link, and cover art into `public/field-notes/albums/`; albums without a cover get a typographic sleeve; `reading[]` of `{ slug, type, title, author, source?, url?, date (YYYY-MM-DD), summary, takeaways[], quote?, sections[] }`, each statically generated at `/field-notes/<slug>` and listed newest first (helpers in `lib/fieldNotes.js`); `elsewhere[]` of `{ label, icon, lines[] }`.
 - `experienceItems[]`: `period`, `title`, `place`, `detail`, `bullets` (rendered by `Timeline.js`).
 - `SectionHeading` takes `title` and an optional `blurb`.
 
@@ -55,6 +55,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - **Run Production Build:** `npm run build`
 - **Start Production Server:** `npm start`
 - **Lint:** `npm run lint`
+- **Fill album details:** `npm run albums` (`-- --force` to refetch all)
 
 ## Code Style & Conventions
 - **Language:** JavaScript (`.js` components). `jsconfig.json` defines an `@/*` alias, but existing files use relative imports; match the file you're editing.
