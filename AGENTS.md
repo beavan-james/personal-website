@@ -24,10 +24,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - The backdrop scrim in `globals.css` uses `ink` as literal `rgb(13 16 12 / …)`; keep it in sync if `ink` changes.
 - **No cards.** Group content with hairline rules (`border-t` / `divide-y divide-line`) and spacing, not boxed panels; the Portfolio list and case study follow this. The only boxed element is the Contact page's link list (`bg-coal/80`, translucent so the photo shows through).
 - **Typography** (loaded via `next/font/google` in `app/layout.js`):
-  - Fraunces, display (`--font-fraunces`, `opsz` + `SOFT` axes, upright only). Apply with `.font-display`.
-  - IBM Plex Sans, body (`--font-plex-sans` → `font-sans`, 400/500/600).
-  - IBM Plex Mono, labels/metadata (`--font-plex-mono` → `font-mono`, 400/500), usually `text-xs uppercase tracking-widest`.
-  - Plex Sans and Plex Mono are one superfamily; don't add other typefaces.
+  - Montserrat (variable, `--font-montserrat`) is the only typeface; `font-display`, `font-sans`, and `font-mono` all resolve to it.
+  - Display (`.font-display`): weight 500, tight tracking. Body: `font-sans`. Labels/metadata: `font-mono`, usually `text-xs uppercase tracking-widest`.
+  - Don't add other typefaces.
   - Do not set a global `line-height` on `body`: unlayered CSS overrides Tailwind's `leading-*` utilities. Set leading per element.
 - **Motifs / utilities** (all in `app/globals.css`; extend these before inventing new visual language):
   - `.site-backdrop` + `.site-rain`: fixed, mirrored snow-leopard photo (`public/snow-leopard.jpg`) at `brightness(0.8)`, a left/bottom scrim, and a rain canvas. `components/SiteBackdrop.js` drives `--backdrop-progress` (0 → 1 over the first viewport) to darken and blur it on scroll.

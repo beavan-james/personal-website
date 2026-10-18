@@ -1,28 +1,14 @@
-import { Fraunces, IBM_Plex_Mono, IBM_Plex_Sans } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import Reveal from "../components/Reveal";
 import SiteBackdrop from "../components/SiteBackdrop";
 
-// Fraunces for the name and headings; the IBM Plex superfamily for the
-// rest: Plex Sans for body copy, Plex Mono for labels and metadata.
-const sans = IBM_Plex_Sans({
-  variable: "--font-plex-sans",
+// Montserrat everywhere: display headings, body copy, and labels.
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
-});
-
-const mono = IBM_Plex_Mono({
-  variable: "--font-plex-mono",
-  subsets: ["latin"],
-  weight: ["400", "500"],
-});
-
-const display = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  axes: ["opsz", "SOFT"],
 });
 
 export const metadata = {
@@ -37,7 +23,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${sans.variable} ${mono.variable} ${display.variable} h-full scroll-smooth`}
+      className={`${montserrat.variable} h-full scroll-smooth`}
     >
       <body
         className={`min-h-full flex flex-col bg-ink text-paper antialiased`}
