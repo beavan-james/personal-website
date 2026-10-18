@@ -3,7 +3,7 @@
 @theme {
   /* Palette sampled from the snow-leopard backdrop (public/snow-leopard.jpg) */
   /* 70% — forest-night surfaces */
-  --color-ink: #0d100c;
+  --color-ink: #090b08;
   --color-coal: #121612;
   --color-line: #262c21;
 
@@ -74,15 +74,15 @@ body {
    progressively as the hero scrolls away (--backdrop-progress 0 → 1) */
 .site-backdrop::after {
   background:
-    linear-gradient(rgb(13 16 12 / calc(var(--backdrop-progress) * 0.55)), rgb(13 16 12 / calc(var(--backdrop-progress) * 0.55))),
-    linear-gradient(90deg, rgb(13 16 12 / 0.85) 0%, rgb(13 16 12 / 0.45) 55%, rgb(13 16 12 / 0.15) 100%),
-    linear-gradient(180deg, rgb(13 16 12 / 0) 50%, rgb(13 16 12 / 0.7) 100%);
+    linear-gradient(rgb(9 11 8 / calc(var(--backdrop-progress) * 0.55)), rgb(9 11 8 / calc(var(--backdrop-progress) * 0.55))),
+    linear-gradient(90deg, rgb(9 11 8 / 0.85) 0%, rgb(9 11 8 / 0.45) 55%, rgb(9 11 8 / 0.15) 100%),
+    linear-gradient(180deg, rgb(9 11 8 / 0) 50%, rgb(9 11 8 / 0.7) 100%);
 }
 @media (max-width: 767px) {
   .site-backdrop::after {
     background:
-      linear-gradient(rgb(13 16 12 / calc(var(--backdrop-progress) * 0.5)), rgb(13 16 12 / calc(var(--backdrop-progress) * 0.5))),
-      linear-gradient(rgb(13 16 12 / 0.7), rgb(13 16 12 / 0.7));
+      linear-gradient(rgb(9 11 8 / calc(var(--backdrop-progress) * 0.5)), rgb(9 11 8 / calc(var(--backdrop-progress) * 0.5))),
+      linear-gradient(rgb(9 11 8 / 0.7), rgb(9 11 8 / 0.7));
   }
 }
 .site-rain {
@@ -91,6 +91,32 @@ body {
   z-index: 1;
   width: 100%;
   height: 100%;
+}
+
+/* Film grain over the whole page (photo and copy alike): an SVG
+   feTurbulence tile, desaturated, jittered a few frames per second so it
+   reads as grain rather than a static texture. Oversized so the jitter
+   never exposes an edge; pointer-events off so it never blocks clicks. */
+.site-grain {
+  position: fixed;
+  inset: -50%;
+  z-index: 60;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='3' intercept='-1'/%3E%3CfeFuncG type='linear' slope='3' intercept='-1'/%3E%3CfeFuncB type='linear' slope='3' intercept='-1'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  opacity: 0.065;
+  animation: grain 0.8s steps(1) infinite;
+}
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  12.5% { transform: translate(-3%, -4%); }
+  25% { transform: translate(4%, 2%); }
+  37.5% { transform: translate(-2%, 5%); }
+  50% { transform: translate(5%, -3%); }
+  62.5% { transform: translate(-4%, 1%); }
+  75% { transform: translate(2%, -5%); }
+  87.5% { transform: translate(-5%, 3%); }
+  100% { transform: translate(0, 0); }
 }
 
 /* Plain text link with a gold underline that grows on hover */
@@ -307,6 +333,9 @@ body {
   }
   .site-backdrop::before {
     filter: brightness(0.8);
+  }
+  .site-grain {
+    animation: none;
   }
 }
 
