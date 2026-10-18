@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import { navLinks, site } from "../lib/site";
+import { navLinks } from "../lib/site";
 
 const isActiveLink = (pathname, href) =>
   pathname === href || (href !== "/" && pathname?.startsWith(href));
@@ -52,11 +52,7 @@ export default function Nav() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-ink/75 backdrop-blur-md">
-      <nav className="mx-auto flex max-w-5xl items-center justify-between px-5 py-4">
-        <Link href="/" className="font-display text-lg leading-tight text-paper">
-          {site.name}
-        </Link>
-
+      <nav className="mx-auto flex max-w-5xl items-center justify-end px-5 py-4">
         <div
           className="relative hidden items-center gap-1 md:flex"
           onMouseLeave={() => placeBar(hoverBar.current, null)}
