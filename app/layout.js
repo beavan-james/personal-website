@@ -49,6 +49,7 @@ export default function RootLayout({ children }) {
           {children}
         </div>
         <Footer />
+        <div className="site-grain" aria-hidden="true" />
       </body>
     </html>
   );
