@@ -31,7 +31,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - Do not set a global `line-height` on `body`: unlayered CSS overrides Tailwind's `leading-*` utilities. Set leading per element.
 - **Motifs / utilities** (all in `app/globals.css`; extend these before inventing new visual language):
   - `.site-backdrop` + `.site-rain`: fixed, mirrored snow-leopard photo (`public/snow-leopard.jpg`) at `brightness(0.8)`, a left/bottom scrim, and a rain canvas. `components/SiteBackdrop.js` drives `--backdrop-progress` (0 → 1 over the first viewport) to darken and blur it on scroll.
-  - `.site-grain`: fixed film-grain overlay (SVG `feTurbulence`, 5% opacity, jittered via `@keyframes grain`) above all content, rendered once in `app/layout.js`. Tune strength with its `opacity`.
+  - `.site-grain`: fixed film-grain overlay (SVG `feTurbulence`, 8% opacity, jittered via `@keyframes grain`) above all content, rendered once in `app/layout.js`. Tune strength with its `opacity`.
   - `.text-link`: text link with a gold underline that grows on hover.
   - `.link-arrow` (`-left`, `-down`, `-out`): arrows nudge on hover of `.text-link` or `.arrow-host`.
   - `.nav-bar` / `-active` / `-hover`: sliding gold underline in `Nav.js`.
