@@ -18,10 +18,10 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Design System
 - **Palette (70 / 20 / 10):** tokens in `app/globals.css` (`@theme`). Use the Tailwind utilities (`bg-ink`, `text-silver`, `border-line`, …), not raw hex.
-  - Surfaces: `ink` `#0d100c` (page), `coal` `#121612` (raised surfaces), `line` `#262c21` (borders/dividers)
+  - Surfaces: `ink` `#090b08` (page), `coal` `#121612` (raised surfaces), `line` `#262c21` (borders/dividers)
   - Text: `paper` `#efebe1`, `silver` `#c6c3b4`, `muted` `#8f917f`
   - Accent: `accent` `#d8c38c`, `accent-dim` `#c4ae76` (leopard-eye gold; use sparingly)
-  - The backdrop scrim in `globals.css` uses `ink` as literal `rgb(13 16 12 / …)`; keep it in sync if `ink` changes.
+  - The backdrop scrim in `globals.css` uses `ink` as literal `rgb(9 11 8 / …)`; keep it in sync if `ink` changes.
 - **No cards.** Group content with hairline rules (`border-t` / `divide-y divide-line`) and spacing, not boxed panels; the Portfolio list and case study follow this. The only boxed element is the Contact page's link list (`bg-coal/80`, translucent so the photo shows through).
 - **Typography** (loaded via `next/font/google` in `app/layout.js`):
   - Fraunces, display (`--font-fraunces`, `opsz` + `SOFT` axes, upright only). Apply with `.font-display`.
@@ -31,7 +31,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - Do not set a global `line-height` on `body`: unlayered CSS overrides Tailwind's `leading-*` utilities. Set leading per element.
 - **Motifs / utilities** (all in `app/globals.css`; extend these before inventing new visual language):
   - `.site-backdrop` + `.site-rain`: fixed, mirrored snow-leopard photo (`public/snow-leopard.jpg`) at `brightness(0.8)`, a left/bottom scrim, and a rain canvas. `components/SiteBackdrop.js` drives `--backdrop-progress` (0 → 1 over the first viewport) to darken and blur it on scroll.
-  - `.site-grain`: fixed film-grain overlay (SVG `feTurbulence`, 8% opacity, jittered via `@keyframes grain`) above all content, rendered once in `app/layout.js`. Tune strength with its `opacity`.
+  - `.site-grain`: fixed film-grain overlay (SVG `feTurbulence`, 6.5% opacity, jittered via `@keyframes grain`) above all content, rendered once in `app/layout.js`. Tune strength with its `opacity`.
   - `.text-link`: text link with a gold underline that grows on hover.
   - `.link-arrow` (`-left`, `-down`, `-out`): arrows nudge on hover of `.text-link` or `.arrow-host`.
   - `.nav-bar` / `-active` / `-hover`: sliding gold underline in `Nav.js`.
