@@ -1,15 +1,8 @@
-import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Nav from "../components/Nav";
 import Footer from "../components/Footer";
 import Reveal from "../components/Reveal";
 import SiteBackdrop from "../components/SiteBackdrop";
-
-// Montserrat everywhere: display headings, body copy, and labels.
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
-});
 
 export const metadata = {
   // Absolute base for the generated og:image / twitter:image URLs
@@ -23,7 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <html
       lang="en"
-      className={`${montserrat.variable} h-full scroll-smooth`}
+      className="h-full scroll-smooth"
     >
       <body
         className={`min-h-full flex flex-col bg-ink text-paper antialiased`}

@@ -23,9 +23,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - Accent: `accent` `#d8c38c`, `accent-dim` `#c4ae76` (leopard-eye gold; use sparingly)
   - The backdrop scrim in `globals.css` uses `ink` as literal `rgb(13 16 12 / …)`; keep it in sync if `ink` changes.
 - **No cards.** Group content with hairline rules (`border-t` / `divide-y divide-line`) and spacing, not boxed panels; the Portfolio list and case study follow this. The only boxed element is the Contact page's link list (`bg-coal/80`, translucent so the photo shows through).
-- **Typography** (loaded via `next/font/google` in `app/layout.js`):
-  - Montserrat (variable, `--font-montserrat`) is the only typeface; `font-display`, `font-sans`, and `font-mono` all resolve to it.
-  - Display (`.font-display`): weight 500, tight tracking. Body: `font-sans`. Labels/metadata: `font-mono`, usually `text-xs uppercase tracking-widest`.
+- **Typography** (system font stack in `app/globals.css` `@theme`; no web fonts are loaded):
+  - Verdana (`--font-verdana`, falling back to Geneva / DejaVu Sans) is the only typeface; `font-display`, `font-sans`, and `font-mono` all resolve to it. It ships regular and bold only, so 500/600 render as regular/bold.
+  - Display (`.font-display`): weight 400, tight tracking. Body: `font-sans`. Labels/metadata: `font-mono`, usually `text-xs uppercase tracking-widest`.
   - Don't add other typefaces.
   - Do not set a global `line-height` on `body`: unlayered CSS overrides Tailwind's `leading-*` utilities. Set leading per element.
 - **Motifs / utilities** (all in `app/globals.css`; extend these before inventing new visual language):

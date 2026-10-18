@@ -16,9 +16,12 @@
   --color-accent: #d8c38c;
   --color-accent-dim: #c4ae76;
 
-  --font-display: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  /* Verdana everywhere: a system font, so nothing is downloaded. Geneva and
+     DejaVu Sans are its closest stand-ins where it isn't installed. */
+  --font-verdana: Verdana, Geneva, "DejaVu Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-verdana);
+  --font-sans: var(--font-verdana);
+  --font-mono: var(--font-verdana);
 }
 
 html {
@@ -38,7 +41,7 @@ body {
    Control leading per-element. */
 .font-display {
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: -0.02em;
   overflow-wrap: break-word;
   text-wrap: balance;
