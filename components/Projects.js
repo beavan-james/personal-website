@@ -40,9 +40,11 @@ export default function Projects() {
                       Live site <span className="link-arrow link-arrow-out">↗︎</span>
                     </a>
                   )}
-                  <a href={p.repo} target="_blank" rel="noopener noreferrer" className="text-link">
-                    GitHub <span className="link-arrow link-arrow-out">↗︎</span>
-                  </a>
+                  {p.repo && (
+                    <a href={p.repo} target="_blank" rel="noopener noreferrer" className="text-link">
+                      GitHub <span className="link-arrow link-arrow-out">↗︎</span>
+                    </a>
+                  )}
                 </div>
                 <p className="font-mono text-xs text-muted">{p.tags.join(" · ")}</p>
               </div>
