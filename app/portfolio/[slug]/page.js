@@ -47,6 +47,24 @@ export default async function CaseStudyPage({ params }) {
           </header>
         </ViewTransition>
 
+        {project.video && (
+          <figure className="mt-12">
+            <video
+              className="aspect-video w-full border border-line bg-ink"
+              poster={project.video.poster}
+              controls
+              muted
+              playsInline
+              preload="none"
+              aria-label={`${project.title} demo video`}
+            >
+              <source src={project.video.src} type="video/mp4" />
+              {project.video.caption}
+            </video>
+            <figcaption className="mt-3 font-mono text-xs text-muted">{project.video.caption}</figcaption>
+          </figure>
+        )}
+
         <section className="mt-16">
           <h2 className="font-display text-3xl text-paper">Pipeline</h2>
           <ol className="mt-6 grid gap-x-8 gap-y-6 md:grid-cols-4">
@@ -96,9 +114,11 @@ export default async function CaseStudyPage({ params }) {
         </div>
 
         <div className="mt-16 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-line pt-8 text-sm font-medium text-silver">
-          <a href={project.repo} target="_blank" rel="noopener noreferrer" className="text-link">
-            Source on GitHub <span className="link-arrow link-arrow-out">↗︎</span>
-          </a>
+          {project.repo && (
+            <a href={project.repo} target="_blank" rel="noopener noreferrer" className="text-link">
+              Source on GitHub <span className="link-arrow link-arrow-out">↗︎</span>
+            </a>
+          )}
           {project.live && (
             <a href={project.live} target="_blank" rel="noopener noreferrer" className="text-link">
               Live site <span className="link-arrow link-arrow-out">↗︎</span>

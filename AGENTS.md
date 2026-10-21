@@ -44,7 +44,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 ## Content Model (`lib/site.js`)
 - `site`: name, role, email, socials, `heroDetails` (Building / Reading / Learning rows in the hero's click-to-expand `<details>` under the role line; a value may be an array for one item per line), `about { title, paragraphs }`, section intros.
 - `navLinks`: Home (`/`), Portfolio, Experience, Contact.
-- `projects[]`: each renders a card on `/portfolio` and a statically generated case study at `/portfolio/<slug>`. Shape: `slug`, `title`, `category`, `description` (card copy; keep it short), `tags`, `repo`, optional `live`, `metrics` (3, shown in a 3-column grid), `pipeline` (4 steps, 4-column grid), and `sections[]` of `{ heading, body, bullets?, table? }`, where `body` is a string or array of paragraphs and `table` is `{ rows: [[label, value], ...] }`.
+- `projects[]`: each renders a card on `/portfolio` and a statically generated case study at `/portfolio/<slug>`. Shape: `slug`, `title`, `category`, `description` (card copy; keep it short), `tags`, optional `repo` (omit while the repository is private) and `live`, optional `video` (`{ src, poster, caption }`, files in `public/projects/`, shown under the case-study header), `metrics` (3, shown in a 3-column grid), `pipeline` (4 steps, 4-column grid), and `sections[]` of `{ heading, body, bullets?, table? }`, where `body` is a string or array of paragraphs and `table` is `{ rows: [[label, value], ...] }`.
 - `experienceItems[]`: `period`, `title`, `place`, `detail`, `bullets` (rendered by `Timeline.js`).
 - `SectionHeading` takes `title` and an optional `blurb`.
 
